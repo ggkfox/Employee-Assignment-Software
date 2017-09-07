@@ -1,1 +1,1 @@
-This is our README for our project repository.
+This is the README for our project repository.
