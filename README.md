@@ -16,7 +16,7 @@ Database:
 Framework: 
 	Express.js
 
-Build System:
+Build Tools:
 	Gulp.js
 	Nodemon
 
@@ -27,3 +27,4 @@ Other Tools:
 	Google Fonts (fonts)
 	Font Awesome (icons)
 	Unsplash (copyright-free images)
+	HandleBars
