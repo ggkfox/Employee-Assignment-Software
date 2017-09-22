@@ -25,6 +25,11 @@ Build Tools:
 	Gulp.js
 	Nodemon
 
+Package Managers:
+
+	NPM
+	Bower
+
 Integrated Development Environment: 
 
 	Cloud9
@@ -34,7 +39,7 @@ Other Tools:
 	Google Fonts (fonts)
 	Font Awesome (icons)
 	Unsplash (copyright-free images)
-	HandleBars
+	EJS
 
 
 How to run the application:
