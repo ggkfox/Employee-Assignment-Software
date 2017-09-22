@@ -23,7 +23,7 @@ app.use(function (req, res, next) {
     next();
 });
 
-
+app.use(express.static(__dirname + '/public'));
 app.use(express.static(__dirname+ '/bower_components'));
 
 // default view engine so we don't need to constantly type ".ejs"
