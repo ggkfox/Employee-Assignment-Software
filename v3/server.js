@@ -8,6 +8,8 @@ var fs = require("fs");
 
 // The purpose of this middleware is to log our server activity for debugging
 // purposes. All activity will be stored in server.log
+
+//For some odd reason, this has to be at the very top. I am not sure why.
 app.use(function (req, res, next) {
     var now = new Date().toString();
     var log = `${now}: ${req.method} ${req.url}`;       // Gives time stamp, the type of request, and url
@@ -21,6 +23,7 @@ app.use(function (req, res, next) {
     next();
 });
 
+// default view engine so we don't need to constantly type ".ejs"
 app.set("view engine", "ejs");
 
 
