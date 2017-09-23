@@ -4,6 +4,10 @@ body {
 
 /*Header Starts Here*/
 
+li > a > span:hover {
+    color: orange;
+}
+
 .divider {
     margin: 12px;
     border: .5px solid white;
@@ -14,9 +18,6 @@ body {
 
 /*Header Ends HERE */
 /* body Starts HERE */
-
-#hero-carousel {
-}
 
 .item {
     height: 600px;

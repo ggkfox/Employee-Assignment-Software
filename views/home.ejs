@@ -1,14 +1,37 @@
-<% include partials/header %>
+<!DOCTYPE html>
 
-<div class="container-fluid">
-    <div id="hero-carousel" class="carousel slide" data-ride="carousel">
-	    <div class="carousel-inner" role="listbox">
-            <div class="item active" id="slide1">
-            </div>
-            <div class="item" id="slide2">
+<html>
+    <head>
+        <title>Lifeguard Tracking</title>
+        <link rel="stylesheet" href="bootstrap/dist/css/bootstrap.min.css" />
+        <link rel="stylesheet" type="text/css" href="css/style.css" />
+        
+    </head>
+    <body>
+        
+        <% include partials/header %>
+
+        <div class="container-fluid">
+            <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                <ol class="carousel-indicators">
+                    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                    <li data-target="#myCarousel" data-slide-to="1"></li>
+                    <li data-target="#myCarousel" data-slide-to="2"></li>
+                </ol>
+	            <div class="carousel-inner" role="listbox">
+                    <div class="item active" id="slide1">
+                    </div>
+                    <div class="item" id="slide2">
+                    </div>
+                    </div class="item" id="slide3">
+                </div>
             </div>
         </div>
-    </div>
-<!--<h1>HOME</h1>-->
-<!--<a href="/about">About</a>-->
-<% include partials/footer %>
+        
+        <% include partials/footer %>
+        
+        </body>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="bootstrap/dist/js/bootstrap.min.js"></script>
+</html>
+
