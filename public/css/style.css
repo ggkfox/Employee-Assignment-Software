@@ -15,7 +15,25 @@ body {
 /*Header Ends HERE */
 /* body Starts HERE */
 
-#hero {
+#hero-carousel {
+}
+
+.item {
+    height: 600px;
+}
+
+#slide1 {
+    background-image: url('../img/img2.jpg');
+    background-position: center;
+}
+
+#slide2 {
+    background-image: url('../img/img1.jpg');
+    background-position: center;
+}
+
+
+/*#hero {
     position: relative;
     height: 600px;
     background-image: url('../img/img2.jpg');
@@ -36,4 +54,4 @@ body {
     position: absolute;
     bottom: 10px;
     display: block;
-}
+}*/
