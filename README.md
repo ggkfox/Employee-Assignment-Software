@@ -4,7 +4,7 @@
 
 Front-End:
 
-	HTML5
+	HTML5 / EJS
 	CSS3
 	JavaScript
 
