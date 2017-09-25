@@ -6,7 +6,7 @@ var app = express();
 // Mongoose allows us an easy way to get our app to interact with our MongoDB 
 // database.
 var mongoose = require("mongoose");
-mongoose.connect("mongodb://localhost/users");
+// mongoose.connect("mongodb://localhost/users");
 
 // File system
 var fs = require("fs");
