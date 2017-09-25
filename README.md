@@ -14,7 +14,7 @@ Server Technology:
 
 Database: 
 
-	MongoDB
+	MongoDB (Mongoose)
 
 Framework: 
 
