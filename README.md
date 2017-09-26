@@ -10,7 +10,7 @@ Front-End:
 
 Server Technology: 
 
-	Node.js v8.5
+	Node.js v8.5.0
 
 Database: 
 
