@@ -4,7 +4,7 @@
 
 Front-End:
 
-	HTML5
+	HTML5 / EJS
 	CSS3
 	JavaScript
 
@@ -14,10 +14,11 @@ Server Technology:
 
 Database: 
 
-	MongoDB
+	MongoDB (Mongoose)
 
-Framework: 
-
+Frameworks: 
+	
+	Bootstrap
 	Express.js
 
 Build Tools:
