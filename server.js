@@ -57,6 +57,11 @@ app.get('/about', function (req, res) {
     res.render('about');
 });
 
+// About page
+app.get('/signup', function (req, res) {
+    res.render('signup');
+});
+
 
 // With this, our app won't crash when trying to access a route/link that doesn't
 // exist. We will serve up a template.
