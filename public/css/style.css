@@ -56,3 +56,7 @@ li > a > span:hover {
     bottom: 10px;
     display: block;
 }*/
+
+#DNE {
+    color: red;
+}
