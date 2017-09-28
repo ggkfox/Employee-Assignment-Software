@@ -56,3 +56,32 @@ li > a > span:hover {
     bottom: 10px;
     display: block;
 }*/
+/*Body ends here */
+/*Footer Starts here */
+.footer-color{
+  background: black;
+}
+
+.font-white{
+  color: white;
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    margin: 0 0 100px;
+    padding: 25px;
+}
+
+footer {
+    background-color: black;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 100px;
+    width: 100%;
+    overflow:hidden;
+}
