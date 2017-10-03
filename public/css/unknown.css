@@ -1,3 +1,77 @@
-#DNE {
-    color: red;
+body{
+  background: black;
+}
+
+#error{
+  font-family: Arial;
+  text-align: center;
+}
+h3{
+  color: white;
+  text-align: center;
+  font-weight: 100;
+  font-family: Calibri;
+}
+header{
+  height: 100px;
+  background-color: rgba(252,100,95,0.7);
+;
+}
+
+h1{
+  float: left;
+}
+
+.unlist {
+  list-style: none;
+  display: inline-block;
+  color: #FFFFFF;
+  border: 1px solid rgb(65,66,61);
+  padding: 5px;
+  background-color: rgb(65,66,61);
+  margin-left: 1px;
+  margin-right: 1px;
+  border-radius: 5px;
+  text-decoration: none;
+
+}
+
+header nav ul li:hover {
+  background: rgb(39,40,34);
+}
+
+nav {
+  float: right;
+  margin-right: 15px;
+  margin-bottom: 10px;
+}
+
+
+img{
+  padding: 0;
+  display: block;
+  margin: 0 auto;
+  max-height: 100%;
+  max-width: 100%;
+  opacity: .85;
+  }
+footer{
+  height: 100px;
+  background-color: rgb(39,40,34);
+}
+
+footer div nav ul li{
+  line-height: 2;
+  list-style: none;
+  text-align: left;
+  font-family: Calibri;
+  color: white;
+  text-decoration: underline;
+}
+
+h6{
+  color: white;
+  font-family: Calibri;
+  font-weight: lighter;
+  text-align: center;
 }
