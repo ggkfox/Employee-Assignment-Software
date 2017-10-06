@@ -102,22 +102,53 @@
         .top30 {
             margin-top: 30px;
         }
+
+        /*Center Table Content*/
+
+        .table td,
+        th {
+            text-align: center;
+        }
     </style>
 </head>
 
 <body>
     <% include partials/header %>
         <div class="container-fluid" style="margin-top:100px">
-            <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#addNewScheduleModal" id="addSchedule"
-                style="right:20px; position:absolute;font-size:20;z-index:99">Add Schedule</button>
-            <div>
+            <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#addEmployeesModal" id="addEmployees"
+                style="left:20px; position:absolute;font-size:20;z-index:99">Add Employees</button>
+
+            <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" id="addSchedule" style="right:230px; position:absolute;font-size:20;z-index:99">Add Rotation</button>
+            <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" id="generateSchedule" style="right:20px; position:absolute;font-size:20;z-index:99">Generate Schedule</button>
+            <div style="margin-top:50px">
                 <div class="loader" id="loader"></div>
                 <div style="display:none;" id="scheduleList" class="animate-bottom">
 
                 </div>
             </div>
 
-
+            <div class="modal fade" id="addEmployeesModal" tabindex="-1" role="dialog" aria-labelledby="addEmployeesModalLabel">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <h4 class="modal-title" id="addEmployeesModalLabel">Upload an employee list</h4>
+                        </div>
+                        <div class="modal-body">
+                            <form ref='uploadForm' id='uploadForm' action='/upload' method='post' encType="multipart/form-data">
+                                <input class="form-control" type="file" name="employeeList" id="employeeList" />
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <input class="btn btn-primary" type='button' id="uploadEmployeesButton" value='Upload' />
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.modal -->
+            </div>
             <!-- Add Schedule Modal Popup -->
             <!-- Modal -->
             <div class="modal fade" id="addNewScheduleModal" tabindex="-1" role="dialog" aria-labelledby="addNewScheduleModalLabel">
@@ -127,52 +158,25 @@
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
-                            <h4 class="modal-title" id="addNewScheduleModalLabel">Add A New Schedule</h4>
+                            <h4 class="modal-title" id="addNewScheduleModalLabel">Add A New Rotation</h4>
                         </div>
                         <div class="modal-body">
                             <!--Shows error state-->
                             <p id="error"></p>
                             <!--Dropdown for number of stations-->
                             <div class="form-group">
-                                <label for="sel1">Number Of Stations:</label>
-                                <select class="form-control" id="numberOfStations">
-                                    <option value="-1">-Select-</option>
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                    <option>5</option>
-                                </select>
+                                <label for="sel1">Name Of Rotation:</label>
+                                <input id="rotationName" name="rotationName" class="form-control" placeholder="e.g. Rotation 1" value="Rotation 1" />
+
                             </div>
                             <div class="panel panel-default">
-                                <div class="panel-heading">Names Of Stations:</div>
+                                <div class="panel-heading">Stations:</div>
                                 <div class="panel-body">
                                     <div id="stationList"></div>
                                 </div>
                             </div>
 
-                            <div class="form-group">
-                                <label for="sel1">Number Of Employees:</label>
-                                <select class="form-control" id="numberOfEmployees">
-                                    <option value="-1">-Select-</option>
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                    <option>5</option>
-                                    <option>6</option>
-                                    <option>7</option>
-                                    <option>8</option>
-                                    <option>9</option>
-                                    <option>10</option>
-                                </select>
-                            </div>
-                            <div class="panel panel-default">
-                                <div class="panel-heading">Employee Names:</div>
-                                <div class="panel-body">
-                                    <div id="employeeList"></div>
-                                </div>
-                            </div>
+
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -192,58 +196,81 @@
     $(document).ready(function () {
         //Attempt to load schedules
         var timer;
-        
-        var serverUrl = "https://node-dev-edgehead179.c9users.io";
-        
+
         var maxLength = 25; // Maximum character length
 
         var stations = [];
 
         var employees = [];
 
+
+
+
+
+        //handles upload of employees XLSX
+        $("#uploadEmployeesButton").click(function () {
+            clearSheduleModal();
+            var formData = new FormData();
+            formData.append('employeeList', $('#employeeList')[0].files[0]);
+
+            $.ajax({
+                url: '/upload',
+                type: 'POST',
+                data: formData,
+                processData: false,  // tell jQuery not to process the data
+                contentType: false  // tell jQuery not to set contentType
+
+            }).done(function (data) {
+                console.log(data);
+                alert(data);
+                $('#addEmployeesModal').modal('hide');
+            }).fail(function (error) {
+                console.log(error);
+                alert(error);
+            });
+        });
+
         //load schedule when page is first opened
         loadSchedules();
 
         //loads all the schedules from the database through express
         function loadSchedules() {
+            $("#generateSchedule").prop('disabled', true);
             hidePage();
             $.ajax({
                 type: "GET",
-                url: serverUrl+"/schedules",
-                data: JSON.stringify({ stations: stations, employees: employees }),
+                url: "/schedules",
+
                 dataType: "json",
                 contentType: "application/json; charset=utf-8"
             }).done(function (data) {
                 var scheduleList = $('#scheduleList');
                 scheduleList.html(""); // clear whatever is there
                 if (data.length > 0) {
+
                     data.forEach(function (schedule) {
+
+                        if (!schedule.filled)
+                            $("#generateSchedule").prop('disabled', false);
+
                         var placements = schedule.placements;
+
                         //add dialog of each schedule
                         scheduleList.append('<div class="container-fluid">' +
                             '<div class="modal-dialog" role="document">' +
                             '<div class="modal-content">' +
-                            '<div class="modal-header">' +
-                            '<h2>'+schedule.name+'</h2>' +
-                            '</div>' +
                             ' <div class="modal-body">' +
-                            '<table class="table">' +
-                            '<thead>' +
-                            placements.map(function (placement) { return '<th>' + placement.stationName + '</th>' }).join('') +
-                            '</thead>' +
-                            '<tr>' + placements.map(function (placement) {
-                                return '<td>' + placement.employees.map(function (employee, it) {
-                                    return (it + 1) + ". " + employee.fname + " " + employee.lname + "<br/>"
-                                }).join('') + '</td>';
-                            }).join('') +
-                            '</tr>' +
-                            '</' +
+                            '<table class="table table-bordered">'
+                            + '<thead><th colspan="2">' + schedule.name + '</th></thead>' +
+                            placements.map(function (placement) { return '<tr><td>' + placement.stationName + '</td><td>' + (schedule.filled ? placement.employees[0].fname + " " + placement.employees[0].lname : "") + '</td></tr>' }).join('') +
+                            '</table>' +
                             '</div>' +
                             '</div>' +
                             '</div>');
                     })
                 }
                 else {
+                    $("#generateSchedule").prop('disabled', true);
                     scheduleList.append("<h2>You have no schedules</h2>");
                 }
                 showPage();
@@ -271,23 +298,41 @@
         }
 
         //hides page content before loading data from database
-        function hidePage(){
+        function hidePage() {
             document.getElementById("loader").style.display = "block";
             document.getElementById("scheduleList").style.display = "none";
         }
 
         //executed when addschedule is clicked, clears the modal
         $("#addSchedule").click(function () {
-            clearSheduleModal();
+
+            $.ajax({
+                type: "GET",
+                url: "/nextRotationName",
+                dataType: "json",
+                contentType: "application/json; charset=utf-8"
+            }).done(function (data) {
+                clearSheduleModal();
+                $("#rotationName").val(data.name);
+                stations.push({ name: '', capacity: 1 })
+                updateStationList();
+                $('#addNewScheduleModal').modal('show');
+            }).fail(function (data) {
+                alert("Failed to contact server: " + JSON.stringify(data));
+            });
+
+
+
         });
 
         //submits schedule to express for sorting and placement
         $("#submitSchedule").click(function () {
             console.log("Submitting schedule", { stations: stations, employees: employees });
+            var rotationName = $("#rotationName").val();
             $.ajax({
                 type: "POST",
-                url:  serverUrl+"/saveSchedule",
-                data: JSON.stringify({ stations: stations, employees: employees }),
+                url: "/saveRotation",
+                data: JSON.stringify({ stations: stations, name: rotationName }),
                 dataType: "json",
                 contentType: "application/json; charset=utf-8"
             }).done(function (data) {
@@ -296,6 +341,23 @@
                 loadSchedules();
             }).fail(function (data) {
                 alert("Failed to save schedule: " + JSON.stringify(data));
+                $("#error").html("<b style='color:red'>An error occurred</b>");
+            });
+        });
+
+        $("#generateSchedule").click(function () {
+            console.log("Generating schedule", { stations: stations, employees: employees });
+            $.ajax({
+                type: "POST",
+                url: "/generateSchedule",
+                dataType: "json",
+                contentType: "application/json; charset=utf-8"
+            }).done(function (data) {
+                clearSheduleModal();
+                loadSchedules();
+            }).fail(function (data) {
+                
+                alert("Failed to generate schedule: " + JSON.stringify(data));
                 $("#error").html("<b style='color:red'>An error occurred</b>");
             });
         });
@@ -319,13 +381,19 @@
             stationList.html(""); // clear content
 
             stations.forEach(function (station, index) {
+                console.log({ index, len: stations.length })
                 stationList.append('<div class="row top5">' +
-                    '<div class="col-lg-6">' +
-                    '<input class="form-control stationname" placeholder="Station ' + (index + 1) + ' Name" maxlength="' + maxLength + '" id="' + index + '" />' +
+                    '<div class="col-lg-10">' +
+                    '<input class="form-control stationname" placeholder="Station ' + (index + 1) + ' Name" maxlength="' + maxLength + '" id="' + index + '" value="' + station.name + '" />' +
                     '</div>' +
-                    '<div class="col-lg-6">' +
-                    '<input class="form-control stationcapacity" type="number"  placeholder="Station ' + (index + 1) + ' Capacity" maxlength="' + maxLength + '" id="' + index + '"/>' +
-                    '</div>' +
+                    // '<div class="col-lg-6">' +
+                    // '<input class="form-control stationcapacity" type="number"  placeholder="Station ' + (index + 1) + ' Capacity" maxlength="' + maxLength + '" id="' + index + '"/>' +
+                    // '</div>' +
+                    (index == stations.length - 1 ? ('<div class="col-lg-2">' +
+                        '<button type="button" class="btn btn-danger addStation" >+</button>' +
+                        '</div>') : '<div class="col-lg-2">' +
+                        '<button  index="' + index + '" type="button" class="btn btn-success removeStation">-</button>' +
+                        '</div>') +
                     '</div>');
             });
 
@@ -339,14 +407,28 @@
 
             })
 
-            //Handle changes in stationcapacity
-            $(".stationcapacity").change(function () {
-                var station = $(this);
-                var index = Number.parseInt(station.attr("id"));
-                var capacity = station.val();
-                stations[index].capacity = capacity;
-                console.log('Station capacity ' + index + ' changed ... ' + capacity)
+            // //Handle changes in stationcapacity
+            // $(".stationcapacity").change(function () {
+            //     var station = $(this);
+            //     var index = Number.parseInt(station.attr("id"));
+            //     var capacity = station.val();
+            //     stations[index].capacity = capacity;
+            //     console.log('Station capacity ' + index + ' changed ... ' + capacity)
+            // })
+
+            //Adds a new station row
+            $(".addStation").click(function () {
+
+                stations.push({ name: "", capacity: 1 });
+                updateStationList();
             })
+
+            $(".removeStation").click(function () {
+                var button = $(this);
+                stations.splice(button.attr("index"), 1);
+                updateStationList();
+            })
+
         }
 
         // creates employees array and updates the view 
@@ -363,7 +445,7 @@
 
         });
 
-         // updates the view to new employee inputs
+        // updates the view to new employee inputs
         function updateEmployeeList() {
             // $('#addNewScheduleModal').modal('show');
             var employeeList = $("#employeeList");

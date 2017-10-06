@@ -16,6 +16,8 @@
     "bower": "^1.8.2",
     "ejs": "^2.5.7",
     "express": "^4.15.4",
-    "mongoose": "^4.11.12"
+    "express-fileupload": "^0.2.0",
+    "mongoose": "^4.11.12",
+    "node-xlsx": "^0.11.0"
   }
 }
