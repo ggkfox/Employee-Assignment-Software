@@ -48,8 +48,9 @@ var Schedule = mongoose.model("Schedule", scheduleSchema);
 
 var Employee = mongoose.model("Employee", employeeSchema);
 
-Schedule.collection.drop();
-Employee.collection.drop();
+//These two lines clear the database
+// Schedule.collection.drop();
+// Employee.collection.drop();
 
 // File system
 var fs = require("fs");
@@ -191,11 +192,17 @@ app.get("/schedules", function(req, res) {
         console.log({ error });
         return res.status(500).send("Error Occurred");
       }
-      return res.json(
-        schedules.map(function(schedule) {
-          return schedule.toObject();
-        })
-      );
+      Employee.collection.count(null, function(error, count) {
+        if (error) {
+          return res.status(500).send("failed");
+        }
+        return res.json({
+          schedules: schedules.map(function(schedule) {
+            return schedule.toObject();
+          }),
+          employeeCount: count
+        });
+      });
     });
 });
 

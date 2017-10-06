@@ -230,6 +230,8 @@
             });
         });
 
+// disabled by default
+// $("#generateSchedule").prop('disabled', true);
         //load schedule when page is first opened
         loadSchedules();
 
@@ -244,13 +246,14 @@
                 dataType: "json",
                 contentType: "application/json; charset=utf-8"
             }).done(function (data) {
+                console.log("data",data)
                 var scheduleList = $('#scheduleList');
                 scheduleList.html(""); // clear whatever is there
-                if (data.length > 0) {
+                if (data.schedules.length > 0) {
 
-                    data.forEach(function (schedule) {
+                    data.schedules.forEach(function (schedule) {
 
-                        if (!schedule.filled)
+                        if (!schedule.filled && data.employeeCount > 0 )
                             $("#generateSchedule").prop('disabled', false);
 
                         var placements = schedule.placements;
