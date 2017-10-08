@@ -131,6 +131,11 @@ app.get("/nextRotationName", function(req, res) {
   });
 });
 
+// Signup page
+app.get('/signup', function (req, res) {
+    res.render('signup');
+});
+
 app.post("/upload", function(req, res) {
   if (!req.files) return res.status(400).send("No files were uploaded.");
   try {
