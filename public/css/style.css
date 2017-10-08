@@ -66,22 +66,21 @@ li > a > span:hover {
   color: white;
 }
 
-html {
-    position: relative;
-    min-height: 100%;
-}
-
-body {
-    margin: 0 0 100px;
-    padding: 25px;
+.container-fluid {
+    padding: 0;
 }
 
 footer {
     background-color: black;
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    height: 100px;
+    height: 400px;
     width: 100%;
     overflow:hidden;
+}
+
+footer div {
+    height: 300px;
+}
+
+h1{
+    position: absolute;
 }
