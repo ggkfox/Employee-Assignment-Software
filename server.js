@@ -121,6 +121,24 @@ function upsertMany(records, Model, match) {
   });
 }
 
+
+//Bulk Update.
+function updateMany(records, Model) {
+  return new Promise(function(resolve, reject) {
+    var bulk = Model.collection.initializeUnorderedBulkOp();
+    records.forEach(function(record) {
+      var query = {_id:record._id};
+      bulk
+        .find(query)
+        .updateOne(record);
+    });
+    bulk.execute(function(error, bulkres) {
+      if (error) return reject(error);
+      resolve(bulkres);
+    });
+  });
+}
+
 app.get("/nextRotationName", function(req, res) {
   Schedule.collection.count(null, function(error, count) {
     if (error) {
@@ -129,11 +147,6 @@ app.get("/nextRotationName", function(req, res) {
     var name = "Rotation " + (count + 1);
     res.json({ name });
   });
-});
-
-// Signup page
-app.get('/signup', function (req, res) {
-    res.render('signup');
 });
 
 app.post("/upload", function(req, res) {
@@ -164,8 +177,6 @@ app.post("/upload", function(req, res) {
         };
       });
 
-    //TODO: check for duplicates
-    // var ids = Employee.collection.updateMany({}, employees, { upsert: true });
     upsertMany(employees, Employee, "id")
       .then(function(bulkRes) {
         console.log(bulkRes);
@@ -203,7 +214,14 @@ app.get("/schedules", function(req, res) {
         }
         return res.json({
           schedules: schedules.map(function(schedule) {
-            return schedule.toObject();
+            var filled = true;
+            schedule.placements.forEach(function(placement){
+              if(placement.employees.length <=0){
+                filled = false;
+              }
+            });
+            
+            return Object.assign({},schedule.toObject(),{filled});
           }),
           employeeCount: count
         });
@@ -213,18 +231,24 @@ app.get("/schedules", function(req, res) {
 
 app.post("/generateSchedule", function(req, res) {
   // find latest schedule where filled == undefined
-  Schedule.findOne({ filled: false }, function(error, schedule) {
+  Schedule.find({ "placements.employees": { $exists: true, $eq: [] } }, function(error, unfilled_schedules) {
     if (error) {
       console.log("error", { error });
       return res.status(500).send("Error occurred");
     }
-    if (!schedule) {
+    if (!unfilled_schedules || unfilled_schedules.length == 0) {
       return res.json({ status: "No free schedule" });
     }
 
-    var stations = schedule.placements.map(function(key) {
-      return { name: key.stationName, capacity: 1 };
+    var stations = [];
+
+    //Treat each station in different schedules differently
+    unfilled_schedules.forEach(function(sched)  {
+      sched.placements.forEach(function(placement) {
+        stations.push({ shedule: sched, name: placement.stationName, capacity: 1 });
+      });
     });
+
     //Employees are now stored in database
     Employee.find().exec(function(error, employees) {
       console.log({ stations, employees });
@@ -384,25 +408,33 @@ app.post("/generateSchedule", function(req, res) {
 
         var newName = "Rotation" + (schedules.length + 1);
 
-        schedule.filled = true;
-        schedule.placements = stations.map(function(station) {
-          return {
-            stationName: station.name,
-            employees: station.placements.map(function(employee) {
-              return {
-                fname: employee.fname,
-                lname: employee.lname,
-                id: employee.id
-              };
-            })
-          };
+        unfilled_schedules.forEach(function(shedule) {
+          shedule.filled = true;
+          var station_placements = stations.filter(function(station){return station.shedule.id == shedule.id});
+          shedule.placements = station_placements.map(function(station) {
+            return {
+              stationName: station.name,
+              employees: station.placements.map(function(employee) {
+                return {
+                  fname: employee.fname,
+                  lname: employee.lname,
+                  id: employee.id
+                };
+              })
+            };
+          });
         });
-        schedule.save(function(error) {
-          if (error) {
+
+        //save all
+
+        updateMany(unfilled_schedules, Schedule)
+          .then(function(bulkRes) {
+            console.log(bulkRes);
+            return res.json({ status: "success" });
+          })
+          .catch(function(error) {
             return res.status(500).send("failed");
-          }
-          return res.json({ status: "success" });
-        });
+          });
       });
     });
   });

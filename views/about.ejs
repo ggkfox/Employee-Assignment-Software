@@ -265,7 +265,7 @@
                             ' <div class="modal-body">' +
                             '<table class="table table-bordered">'
                             + '<thead><th colspan="2">' + schedule.name + '</th></thead>' +
-                            placements.map(function (placement) { return '<tr><td>' + placement.stationName + '</td><td>' + (schedule.filled ? placement.employees[0].fname + " " + placement.employees[0].lname : "") + '</td></tr>' }).join('') +
+                            placements.map(function (placement) { return '<tr><td>' + placement.stationName + '</td><td>' + ( placement.employees.length>0 ? (placement.employees[0].fname + " " + placement.employees[0].lname) : "") + '</td></tr>' }).join('') +
                             '</table>' +
                             '</div>' +
                             '</div>' +
