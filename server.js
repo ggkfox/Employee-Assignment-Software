@@ -1,4 +1,3 @@
-// Require the Express framework to be included and then store in
 // app variable so we can use the functions associated with Express.
 var express = require("express");
 var bodyParser = require("body-parser"); // Added to allow posting of json data
