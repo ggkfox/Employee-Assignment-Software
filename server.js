@@ -188,10 +188,15 @@ app.get("/about", function(req, res) {
   res.render("about");
 });
 
+app.get("/login", function(req, res) {
+  res.render("login");
+});
+
 //returns a list of all the schedules defined in the database
 app.get("/schedules", function(req, res) {
   Schedule.find()
     .sort("-created_at")
+    
     .exec(function(error, schedules) {
       if (error) {
         console.log({ error });
