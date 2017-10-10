@@ -67,4 +67,18 @@ How to run the application:
 	STEP 7: Then type "nodemon server.js" and this will start the server. Click on the "Preview" button next to the run
 			button and choose "Preview Running Application." A window will pop up. Copy the url and close that window
 			and enter a link in another browser tab.
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
 
