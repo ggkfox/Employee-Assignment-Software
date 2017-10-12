@@ -1,6 +1,530 @@
-<% include partials/header %>
+<html>
 
-<h1>ABOUT</h1>
-<a href="/">Home</a>
+<head>
+    <title>Lifeguard Tracking</title>
+    <link rel="stylesheet" href="bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <link rel="stylesheet" type="text/css" href="css/about.css" />
+    <style>
+        /* Center the loader */
 
-<% include partials/footer %>
+        #loader {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            z-index: 1;
+            width: 150px;
+            height: 150px;
+            margin: -75px 0 0 -75px;
+            border: 16px solid #f3f3f3;
+            border-radius: 50%;
+            border-top: 16px solid #3498db;
+            width: 120px;
+            height: 120px;
+            -webkit-animation: spin 2s linear infinite;
+            animation: spin 2s linear infinite;
+        }
+
+        @-webkit-keyframes spin {
+            0% {
+                -webkit-transform: rotate(0deg);
+            }
+            100% {
+                -webkit-transform: rotate(360deg);
+            }
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Add animation to "page content" */
+
+        .animate-bottom {
+            position: relative;
+            -webkit-animation-name: animatebottom;
+            -webkit-animation-duration: 1s;
+            animation-name: animatebottom;
+            animation-duration: 1s
+        }
+
+        @-webkit-keyframes animatebottom {
+            from {
+                bottom: -100px;
+                opacity: 0
+            }
+            to {
+                bottom: 0px;
+                opacity: 1
+            }
+        }
+
+        @keyframes animatebottom {
+            from {
+                bottom: -100px;
+                opacity: 0
+            }
+            to {
+                bottom: 0;
+                opacity: 1
+            }
+        }
+
+        #myDiv {
+            display: none;
+            text-align: center;
+        }
+
+        .top5 {
+            margin-top: 5px;
+        }
+
+        .top7 {
+            margin-top: 7px;
+        }
+
+        .top10 {
+            margin-top: 10px;
+        }
+
+        .top15 {
+            margin-top: 15px;
+        }
+
+        .top17 {
+            margin-top: 17px;
+        }
+
+        .top30 {
+            margin-top: 30px;
+        }
+
+        /*Center Table Content*/
+
+        .table td,
+        th {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+        <!--HEADER STARTS HERE-->
+    <header>
+        <nav style="background-color: rgba(0,0,0,.65)" class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container-fluid">
+                <div class="container">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span> 
+                        </button>
+                        <!--TITLE BUTTON / LOGO-->
+                        <a class="navbar-brand" href="/">Employee Tracker</a>
+                    </div>
+                    <div class="collapse navbar-collapse" id="myNavbar">
+                        <!--RIGHT HAND SIDE NAV BAR-->
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="about">App</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                            <li><a href="login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <!--HEADER ENDS HERE-->
+        
+    <!--BODY STARTS HERE-->
+    <div class="container-fluid" style="margin-top:100px">
+        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#addEmployeesModal" id="addEmployees"
+            style="left:20px; position:absolute;font-size:20;z-index:99">Add Employees</button>
+            <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" id="addSchedule" style="right:230px; position:absolute;font-size:20;z-index:99">Add Rotation</button>
+        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" id="generateSchedule" style="right:20px; position:absolute;font-size:20;z-index:99">Generate Schedule</button>
+        <div style="margin-top:50px">
+            <div class="loader" id="loader"></div>
+            <div style="display:none;" id="scheduleList" class="animate-bottom">
+                </div>
+        </div>
+            <div class="modal fade" id="addEmployeesModal" tabindex="-1" role="dialog" aria-labelledby="addEmployeesModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h4 class="modal-title" id="addEmployeesModalLabel">Upload an employee list</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form ref='uploadForm' id='uploadForm' action='/upload' method='post' encType="multipart/form-data">
+                            <input class="form-control" type="file" name="employeeList" id="employeeList" />
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <input class="btn btn-primary" type='button' id="uploadEmployeesButton" value='Upload' />
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+            <!-- /.modal -->
+        </div>
+        <!-- Add Schedule Modal Popup -->
+        <!-- Modal -->
+        <div class="modal fade" id="addNewScheduleModal" tabindex="-1" role="dialog" aria-labelledby="addNewScheduleModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h4 class="modal-title" id="addNewScheduleModalLabel">Add A New Rotation</h4>
+                    </div>
+                    <div class="modal-body">
+                        <!--Shows error state-->
+                        <p id="error"></p>
+                        <!--Dropdown for number of stations-->
+                        <div class="form-group">
+                            <label for="sel1">Name Of Rotation:</label>
+                            <input id="rotationName" name="rotationName" class="form-control" placeholder="e.g. Rotation 1" value="Rotation 1" />
+                            </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">Stations:</div>
+                            <div class="panel-body">
+                                <div id="stationList"></div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" id="submitSchedule">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /.modal -->
+    </div>
+    <% include partials/footer %>
+    
+</body>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="bootstrap/dist/js/bootstrap.min.js"></script>
+<script>
+    $(document).ready(function () {
+        //Attempt to load schedules
+        var timer;
+
+        var maxLength = 25; // Maximum character length
+
+        var stations = [];
+
+        var employees = [];
+
+
+
+
+
+        //handles upload of employees XLSX
+        $("#uploadEmployeesButton").click(function () {
+            clearSheduleModal();
+            var formData = new FormData();
+            formData.append('employeeList', $('#employeeList')[0].files[0]);
+
+            $.ajax({
+                url: '/upload',
+                type: 'POST',
+                data: formData,
+                processData: false,  // tell jQuery not to process the data
+                contentType: false  // tell jQuery not to set contentType
+
+            }).done(function (data) {
+                console.log(data);
+                alert(data);
+                $('#addEmployeesModal').modal('hide');
+            }).fail(function (error) {
+                console.log(error);
+                alert(error);
+            });
+        });
+
+// disabled by default
+// $("#generateSchedule").prop('disabled', true);
+        //load schedule when page is first opened
+        loadSchedules();
+
+        //loads all the schedules from the database through express
+        function loadSchedules() {
+            $("#generateSchedule").prop('disabled', true);
+            hidePage();
+            $.ajax({
+                type: "GET",
+                url: "/schedules",
+
+                dataType: "json",
+                contentType: "application/json; charset=utf-8"
+            }).done(function (data) {
+                console.log("data",data)
+                var scheduleList = $('#scheduleList');
+                scheduleList.html(""); // clear whatever is there
+                if (data.schedules.length > 0) {
+
+                    data.schedules.forEach(function (schedule) {
+
+                        if (!schedule.filled && data.employeeCount > 0 )
+                            $("#generateSchedule").prop('disabled', false);
+
+                        var placements = schedule.placements;
+
+                        //add dialog of each schedule
+                        scheduleList.append('<div class="container-fluid">' +
+                            '<div class="modal-dialog" role="document">' +
+                            '<div class="modal-content">' +
+                            ' <div class="modal-body">' +
+                            '<table class="table table-bordered">'
+                            + '<thead><th colspan="2">' + schedule.name + '</th></thead>' +
+                            placements.map(function (placement) { return '<tr><td>' + placement.stationName + '</td><td>' + (schedule.filled ? placement.employees[0].fname + " " + placement.employees[0].lname : "") + '</td></tr>' }).join('') +
+                            '</table>' +
+                            '</div>' +
+                            '</div>' +
+                            '</div>');
+                    })
+                }
+                else {
+                    $("#generateSchedule").prop('disabled', true);
+                    scheduleList.append("<h2>You have no schedules</h2>");
+                }
+                showPage();
+            }).fail(function (data) {
+
+            });
+        }
+
+        //clears the add schedule modal
+        function clearSheduleModal() {
+            stations = [];
+            employees = [];
+            $("#error").html("");
+            updateEmployeeList();
+            updateStationList();
+            $("#numberOfStations").val(-1);
+            $("#numberOfEmployees").val(-1);
+
+        }
+
+        //shows page content after loading data from database
+        function showPage() {
+            document.getElementById("loader").style.display = "none";
+            document.getElementById("scheduleList").style.display = "block";
+        }
+
+        //hides page content before loading data from database
+        function hidePage() {
+            document.getElementById("loader").style.display = "block";
+            document.getElementById("scheduleList").style.display = "none";
+        }
+
+        //executed when addschedule is clicked, clears the modal
+        $("#addSchedule").click(function () {
+
+            $.ajax({
+                type: "GET",
+                url: "/nextRotationName",
+                dataType: "json",
+                contentType: "application/json; charset=utf-8"
+            }).done(function (data) {
+                clearSheduleModal();
+                $("#rotationName").val(data.name);
+                stations.push({ name: '', capacity: 1 })
+                updateStationList();
+                $('#addNewScheduleModal').modal('show');
+            }).fail(function (data) {
+                alert("Failed to contact server: " + JSON.stringify(data));
+            });
+
+
+
+        });
+
+        //submits schedule to express for sorting and placement
+        $("#submitSchedule").click(function () {
+            console.log("Submitting schedule", { stations: stations, employees: employees });
+            var rotationName = $("#rotationName").val();
+            $.ajax({
+                type: "POST",
+                url: "/saveRotation",
+                data: JSON.stringify({ stations: stations, name: rotationName }),
+                dataType: "json",
+                contentType: "application/json; charset=utf-8"
+            }).done(function (data) {
+                clearSheduleModal();
+                $('#addNewScheduleModal').modal('hide');
+                loadSchedules();
+            }).fail(function (data) {
+                alert("Failed to save schedule: " + JSON.stringify(data));
+                $("#error").html("<b style='color:red'>An error occurred</b>");
+            });
+        });
+
+        $("#generateSchedule").click(function () {
+            console.log("Generating schedule", { stations: stations, employees: employees });
+            $.ajax({
+                type: "POST",
+                url: "/generateSchedule",
+                dataType: "json",
+                contentType: "application/json; charset=utf-8"
+            }).done(function (data) {
+                clearSheduleModal();
+                loadSchedules();
+            }).fail(function (data) {
+                
+                alert("Failed to generate schedule: " + JSON.stringify(data));
+                $("#error").html("<b style='color:red'>An error occurred</b>");
+            });
+        });
+
+        // creates stations array and updates the view to new inputs
+        $("#numberOfStations").change(function () {
+            var stationCount = $(this).val();
+            console.log("Changed number of stations", stationCount);
+
+            stations = [];
+            // Add number of stations empty list items
+            for (var index = 0; index < stationCount; index++) {
+                stations.push({ name: '', capacity: 0 });
+            }
+            updateStationList();
+        });
+
+        // updates the view to new inputs
+        function updateStationList() {
+            var stationList = $("#stationList");
+            stationList.html(""); // clear content
+
+            stations.forEach(function (station, index) {
+                console.log({ index, len: stations.length })
+                stationList.append('<div class="row top5">' +
+                    '<div class="col-lg-10">' +
+                    '<input class="form-control stationname" placeholder="Station ' + (index + 1) + ' Name" maxlength="' + maxLength + '" id="' + index + '" value="' + station.name + '" />' +
+                    '</div>' +
+                    // '<div class="col-lg-6">' +
+                    // '<input class="form-control stationcapacity" type="number"  placeholder="Station ' + (index + 1) + ' Capacity" maxlength="' + maxLength + '" id="' + index + '"/>' +
+                    // '</div>' +
+                    (index == stations.length - 1 ? ('<div class="col-lg-2">' +
+                        '<button type="button" class="btn btn-danger addStation" >+</button>' +
+                        '</div>') : '<div class="col-lg-2">' +
+                        '<button  index="' + index + '" type="button" class="btn btn-success removeStation">-</button>' +
+                        '</div>') +
+                    '</div>');
+            });
+
+            //Handle changes in stationname  
+            $(".stationname").change(function () {
+                var station = $(this);
+                var index = Number.parseInt(station.attr("id"));
+                var name = station.val();
+                stations[index].name = name;
+                console.log('Station name ' + index + ' changed ... ' + name)
+
+            })
+
+            // //Handle changes in stationcapacity
+            // $(".stationcapacity").change(function () {
+            //     var station = $(this);
+            //     var index = Number.parseInt(station.attr("id"));
+            //     var capacity = station.val();
+            //     stations[index].capacity = capacity;
+            //     console.log('Station capacity ' + index + ' changed ... ' + capacity)
+            // })
+
+            //Adds a new station row
+            $(".addStation").click(function () {
+
+                stations.push({ name: "", capacity: 1 });
+                updateStationList();
+            })
+
+            $(".removeStation").click(function () {
+                var button = $(this);
+                stations.splice(button.attr("index"), 1);
+                updateStationList();
+            })
+
+        }
+
+        // creates employees array and updates the view 
+        $("#numberOfEmployees").change(function () {
+            var employeeCount = $(this).val();
+            console.log("Changed number of employees", employeeCount);
+
+            employees = [];
+            // Add number of stations empty list items
+            for (var index = 0; index < employeeCount; index++) {
+                employees.push({ fname: '', lname: '', id: '' });
+            }
+            updateEmployeeList();
+
+        });
+
+        // updates the view to new employee inputs
+        function updateEmployeeList() {
+            // $('#addNewScheduleModal').modal('show');
+            var employeeList = $("#employeeList");
+            employeeList.html(""); // clear content
+
+            employees.forEach(function (station, index) {
+                employeeList.append('<div class="row top5">' +
+                    '<div class="col-lg-4">' +
+                    '<input class="form-control empid" placeholder="Employee ' + (index + 1) + ' Id"  maxlength="' + maxLength + '" id="' + index + '"/>' +
+                    '</div>' +
+                    '<div class="col-lg-4">' +
+                    '<input class="form-control empfname" placeholder="Employee ' + (index + 1) + ' Firstname" maxlength="' + maxLength + '"  id="' + index + '"/>' +
+                    '</div>' +
+                    '<div class="col-lg-4">' +
+                    '<input  class="form-control emplname" placeholder="Employee ' + (index + 1) + ' Lastname" maxlength="' + maxLength + '"  id="' + index + '"/>' +
+                    '</div>' +
+                    '</div>');
+            });
+
+            //Handle changes in employee id and updates employees array  
+            $(".empid").change(function () {
+                var employee = $(this);
+                var index = Number.parseInt(employee.attr("id"));
+                var id = employee.val();
+                employees[index].id = id;
+                console.log('employee id ' + index + ' changed ... ' + id)
+
+            })
+            //Handle changes in employee firstname and updates employees array 
+            $(".empfname").change(function () {
+                var employee = $(this);
+                var index = Number.parseInt(employee.attr("id"));
+                var fname = employee.val();
+                employees[index].fname = fname;
+                console.log('employee fname ' + index + ' changed ... ' + fname)
+
+            })
+
+            //Handle changes in employee id and updates employees array 
+            $(".emplname").change(function () {
+                var employee = $(this);
+                var index = Number.parseInt(employee.attr("id"));
+                var lname = employee.val();
+                employees[index].lname = lname;
+                console.log('employee lname ' + index + ' changed ... ' + lname)
+
+            })
+        }
+
+    })
+</script>
+
+
+</html>
