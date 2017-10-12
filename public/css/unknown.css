@@ -1,77 +1,54 @@
+html,body{
+  margin: 0;
+}
 body{
-  background: black;
+  background: url("https://static.pexels.com/photos/159027/bokeh-blue-light-blue-neon-159027.jpeg");
+  background-size: cover;
+}
+
+#container{
+  position: relative;
+  padding: 0;
+  margin-top: 0;
+  height: 50px;
+  background-color: orange;
 }
 
 #error{
+  margin: 0;
   font-family: Arial;
-  text-align: center;
-}
-h3{
   color: white;
-  text-align: center;
-  font-weight: 100;
-  font-family: Calibri;
-}
-header{
   height: 100px;
-  background-color: rgba(252,100,95,0.7);
-;
+  background-color: rgba(230,88,84,0.8);
 }
 
-h1{
-  float: left;
+#belowHeader{
+  margin: 0;
+  color: white;
+  font-family: Calibri;
+  height: 250px;
+  background-color: rgba(0,0,0,.5);
 }
 
-.unlist {
-  list-style: none;
-  display: inline-block;
-  color: #FFFFFF;
-  border: 1px solid rgb(65,66,61);
-  padding: 5px;
-  background-color: rgb(65,66,61);
-  margin-left: 1px;
-  margin-right: 1px;
-  border-radius: 5px;
-  text-decoration: none;
-
+#insideBelowHeader{
+  font-size: .8em;
 }
 
-header nav ul li:hover {
-  background: rgb(39,40,34);
-}
-
-nav {
-  float: right;
-  margin-right: 15px;
-  margin-bottom: 10px;
-}
-
-
-img{
-  padding: 0;
-  display: block;
-  margin: 0 auto;
-  max-height: 100%;
-  max-width: 100%;
-  opacity: .85;
-  }
 footer{
-  height: 100px;
-  background-color: rgb(39,40,34);
-}
-
-footer div nav ul li{
-  line-height: 2;
-  list-style: none;
-  text-align: left;
-  font-family: Calibri;
-  color: white;
-  text-decoration: underline;
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  height: 250px;
+  background-color: rgba(0,0,0,1)
+  
 }
 
 h6{
   color: white;
+}
+
+footer nav ul li{
+  color: rgba(255,255,255,0.75);
+  list-style: none;
   font-family: Calibri;
-  font-weight: lighter;
-  text-align: center;
 }
