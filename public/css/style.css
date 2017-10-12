@@ -2,9 +2,13 @@ body {
     background-color: lightblue;
 }
 
+.container-fluid {
+    padding: 0;
+}
+
 /*Header Starts Here*/
 
-li > a > span:hover {
+.navlist:hover, .navlist:hover * {
     color: orange;
 }
 
@@ -33,26 +37,3 @@ li > a > span:hover {
     background-position: center;
 }
 
-
-/*#hero {
-    position: relative;
-    height: 600px;
-    background-image: url('../img/img2.jpg');
-    background-position: center;
-}
-
-#hero h1, #hero h5 {
-    padding-top: 60px;
-    text-align: center;
-}
-
-#hero h3 {
-    position: absolute;
-    bottom: 30px;
-}
-
-#hero button {
-    position: absolute;
-    bottom: 10px;
-    display: block;
-}*/
