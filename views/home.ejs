@@ -13,7 +13,7 @@
         
          <!--HEADER STARTS HERE-->
         <header>
-            <nav style="background-color: rgba(0,0,0,.65)" class="navbar navbar-inverse navbar-fixed-top">
+            <nav class="navbar navbar-inverse navbar-fixed-top">
                 <div class="container-fluid">
                     <div class="container">
                         <div class="navbar-header">
@@ -23,7 +23,7 @@
                                 <span class="icon-bar"></span> 
                             </button>
                             <!--TITLE BUTTON / LOGO-->
-                            <a class="navbar-brand" href="/">Employee Tracker</a>
+                            <span class="navbar-brand"><a href="/">Employee Tracker</a></span>
                         </div>
                         <div class="collapse navbar-collapse" id="myNavbar">
                             <!--RIGHT HAND SIDE NAV BAR-->
@@ -42,8 +42,8 @@
         
         <!--BODY STARTS HERE-->
 
-        <div class="container-fluid">
-            <div id="myCarousel" class="carousel slide" data-ride="carousel">
+        <div class="container-fluid hero">
+            <div id="myCarousel" class="container carousel slide" data-ride="carousel">
                 <ol class="carousel-indicators">
                     <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
                     <li data-target="#myCarousel" data-slide-to="1"></li>
@@ -51,18 +51,46 @@
                 </ol>
 	            <div class="carousel-inner" role="listbox">
                     <div class="item active" id="slide1">
+                        <h1>Sign Up Now,<br>Its Free!</h1>
                     </div>
                     <div class="item" id="slide2">
+                        <h1>Easy to use<br>interface</h1>
                     </div>
-                    </div class="item" id="slide3">
+                    <div class="item" id="slide3">
+                        <h1>Perfect for bussinesses such as:<br>waterparks, ski-resorts, and any<br>other randomized position assignment.</h1>
+                    </div>
                 </div>
             </div>
+            <div>
+                <button class="start-button btn btn-success btn-lg">Get Started!</button>
+            </div>
         </div>
-        
+        <div class="row">
+            <div class="container">
+                <div class="col-md-4"><h1>phrase 1</h1><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam distinctio magni hic reiciendis blanditiis ducimus at, velit! Sed architecto quidem modi deserunt esse sint labore.</100></24lorum></lorum24></p></div>
+                <div class="col-md-4"><h1>phrase 2</h1><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam exercitationem eius obcaecati expedita quae, consequatur, inventore voluptatum, officiis repudiandae cum quibusdam, minima?</p></div>
+                <div class="col-md-4"><h1>phrase 3</h1><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse sit tenetur, culpa aperiam harum reprehenderit expedita veniam autem ratione animi.</p></div>
+            </div>
+        </div>
         <% include partials/footer %>
-        
         </body>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="bootstrap/dist/js/bootstrap.min.js"></script>
+    <script>
+        $(window).scroll(function() {
+            // declare variable
+            var topPos = $(this).scrollTop();
+    
+            // if user scrolls down - show scroll to top button
+            if (topPos < 5) {
+                $(".navbar").css("background-color", "rgba(204, 255, 255, .5)");
+                $(".navbar-brand a, #myNavbar ul li *").css("color", "black");
+            } 
+            else {
+                $(".navbar").css("background-color", "white");
+                $(".navbar-brand a, #myNavbar ul li *").css("color", "#808080");
+            }
+        });
+    </script>
 </html>
 

@@ -1,15 +1,24 @@
-body {
-    background-color: lightblue;
-}
-
 .container-fluid {
     padding: 0;
 }
 
+.row {
+    margin: 0;
+}
+
 /*Header Starts Here*/
 
-.navlist:hover, .navlist:hover * {
-    color: orange;
+.navbar {
+    background-color: rgba(204, 255, 255, .5);
+    height: 70px;
+}
+
+.navbar-brand a, #myNavbar ul li * {
+    color: black;
+}
+
+.navbar-header, #myNavbar {
+    padding-top: 10px;
 }
 
 .divider {
@@ -20,20 +29,47 @@ body {
     width: 1px;
 }
 
+.navlist {
+    margin: 0 3px;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+.navlist:hover {
+    background-color: #66ffff;
+}
+
 /*Header Ends HERE */
 /* body Starts HERE */
 
-.item {
-    height: 600px;
-}
-
-#slide1 {
+.hero {
+    height: 650px;
     background-image: url('../img/img2.jpg');
     background-position: center;
 }
 
-#slide2 {
-    background-image: url('../img/img1.jpg');
-    background-position: center;
+#myCarousel {
+    margin-top: 100px;
 }
 
+.item {
+    height: 400px;
+}
+
+.item h1 {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    padding-top: 110px;
+    font-size: 50px;
+    font-style: bold;
+    color: white;
+    text-shadow: 2px 2px black;
+}
+
+.start-button {
+    display: block;
+    margin: 0 auto;
+    padding: 25px;
+    margin-top: 20px;
+}
