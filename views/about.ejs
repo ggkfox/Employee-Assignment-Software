@@ -8,6 +8,9 @@
     <style>
         /* Center the loader */
 
+        body {
+            background-color: #f2f2f2;
+        }
         #loader {
             position: absolute;
             left: 50%;
@@ -114,41 +117,15 @@
 </head>
 
 <body>
-        <!--HEADER STARTS HERE-->
-    <header>
-        <nav style="background-color: rgba(0,0,0,.65)" class="navbar navbar-inverse navbar-fixed-top">
-            <div class="container-fluid">
-                <div class="container">
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span> 
-                        </button>
-                        <!--TITLE BUTTON / LOGO-->
-                        <a class="navbar-brand" href="/">Employee Tracker</a>
-                    </div>
-                    <div class="collapse navbar-collapse" id="myNavbar">
-                        <!--RIGHT HAND SIDE NAV BAR-->
-                        <ul class="nav navbar-nav navbar-right">
-                            <li><a href="about">App</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-                            <li><a href="login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </nav>
-    </header>
-    <!--HEADER ENDS HERE-->
-        
+    
+    <% include partials/header %>
+ 
     <!--BODY STARTS HERE-->
     <div class="container-fluid" style="margin-top:100px">
-        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#addEmployeesModal" id="addEmployees"
-            style="left:20px; position:absolute;font-size:20;z-index:99">Add Employees</button>
-            <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" id="addSchedule" style="right:230px; position:absolute;font-size:20;z-index:99">Add Rotation</button>
-        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" id="generateSchedule" style="right:20px; position:absolute;font-size:20;z-index:99">Generate Schedule</button>
+        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#addEmployeesModal" id="addEmployees" style="left:20px; position:absolute;font-size:20;z-index:99">Add Employees</button>
+        <button type="button" class="btn btn-warning btn-lg" data-toggle="modal" id="addSchedule" style="float: right; margin: 5px; font-size:20;z-index:99">Add Rotation</button>
+        <button type="button" class="btn btn-success btn-lg" data-toggle="modal" id="generateSchedule" style="float: right; margin: 5px; font-size:20;z-index:99">Generate Schedule</button>
+        <button type="button" class="btn btn-danger btn-lg" data-toggle="modal" id="clearspots" style="float: right; margin: 5px; font-size:20;z-index:99">Clear Spots</button></button>
         <div style="margin-top:50px">
             <div class="loader" id="loader"></div>
             <div style="display:none;" id="scheduleList" class="animate-bottom">
@@ -217,6 +194,7 @@
 </body>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script src="bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="js/header.js"></script>
 <script>
     $(document).ready(function () {
         //Attempt to load schedules
