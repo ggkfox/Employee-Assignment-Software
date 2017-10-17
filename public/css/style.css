@@ -11,6 +11,7 @@
 .navbar {
     background-color: rgba(204, 255, 255, .5);
     height: 70px;
+    border: hidden;
 }
 
 .navbar-brand a, #myNavbar ul li * {
@@ -85,4 +86,12 @@ footer {
 #copyright {
     text-align: center;
     padding: 15px;
+}
+
+.footdivider {
+    margin: 12px;
+    border: .5px solid white;
+    border-color: #9d9d9d;
+    height: 100px;
+    width: 1px;
 }

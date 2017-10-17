@@ -128,8 +128,7 @@
         <button type="button" class="btn btn-danger btn-lg" data-toggle="modal" id="clearspots" style="float: right; margin: 5px; font-size:20;z-index:99">Clear Spots</button></button>
         <div style="margin-top:50px">
             <div class="loader" id="loader"></div>
-            <div style="display:none;" id="scheduleList" class="animate-bottom">
-                </div>
+            <div style="display:none;" id="scheduleList" class="animate-bottom"></div>
         </div>
             <div class="modal fade" id="addEmployeesModal" tabindex="-1" role="dialog" aria-labelledby="addEmployeesModalLabel">
             <div class="modal-dialog" role="document">
@@ -396,9 +395,9 @@
                     // '<input class="form-control stationcapacity" type="number"  placeholder="Station ' + (index + 1) + ' Capacity" maxlength="' + maxLength + '" id="' + index + '"/>' +
                     // '</div>' +
                     (index == stations.length - 1 ? ('<div class="col-lg-2">' +
-                        '<button type="button" class="btn btn-danger addStation" >+</button>' +
+                        '<button type="button" class="btn btn-success addStation" >+</button>' +
                         '</div>') : '<div class="col-lg-2">' +
-                        '<button  index="' + index + '" type="button" class="btn btn-success removeStation">-</button>' +
+                        '<button  index="' + index + '" type="button" class="btn btn-danger removeStation">-</button>' +
                         '</div>') +
                     '</div>');
             });
