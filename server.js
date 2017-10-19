@@ -197,6 +197,16 @@ app.get("/login", function(req, res) {
   res.render("login");
 });
 
+app.get("/signup", function(req, res) {
+  res.render("signup");
+});
+
+
+app.get("/error", function(req, res) {
+  res.render("error");
+});
+
+
 // About page
 app.get("/about", function(req, res) {
   res.render("about");
