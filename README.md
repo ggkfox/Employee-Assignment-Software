@@ -1,4 +1,4 @@
-# Lifeguard Employee Tracking System
+# Employee Assignment Software
 
 ## Technologies Being Used (so far)
 
