@@ -2,21 +2,25 @@ html,body{
   margin: 0;
 }
 body{
-  background: url("https://static.pexels.com/photos/159027/bokeh-blue-light-blue-neon-159027.jpeg");
+  background: white;/*rgba(230,88,84,0.6);*/
   background-size: cover;
   font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
 }
+#highTop{
+  margin: auto;
+  height: 70px;
+  background-color: rgba(230,88,84,0.6);
 
+}
 #container{
   height: 50px;
-  background-color: rgba(0,0,0,0);
   margin: auto;  
 }
-
+/*
 header{
   background: #333;
   height: 45px;
-}
+}*/
 
 .unlistHead{
   color: #fff;
@@ -43,7 +47,7 @@ header{
   margin: 0;
   font-weight: 500;
   color: rgba(255,255,255,0.75);
-  height: 400px;
+  height: 175px;
   background-color: rgba(230,88,84,0.6);
 }
 
@@ -56,7 +60,6 @@ footer{
   width: 100%;
   bottom: 0;
   height: 250px;
-  background-color: #89cff0;
 }
 
 h6{
