@@ -3,13 +3,29 @@ var express = require("express");
 var bodyParser = require("body-parser"); // Added to allow posting of json data
 var xlsx = require("node-xlsx");
 var fileUpload = require("express-fileupload");
-
 var app = express();
-
 // Mongoose allows us an easy way to get our app to interact with our MongoDB
 // database.
 var mongoose = require("mongoose");
+//passport and all its components are used for user authentication.
+var passport = require("passport");
+var user = require("./user");
+var passportLocalMongoose = require("passport-local-mongoose")
+
 mongoose.connect("mongodb://localhost/lifeguard");
+
+//user authentication, by josh (so expect errors here)
+app.use(require("express-session")({
+  secret: "im not into fat chicks",//(probably change to about.ejs)
+  resave: false,
+  saveUninitialized: false
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+passport.serializeUser(user.serializeUser());
+passport.deserializeUser(user.deserializeUser());
 
 //Added schema for how the schedules are stored in the database
 var scheduleSchema = new mongoose.Schema(
