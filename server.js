@@ -89,9 +89,9 @@ app.set("view engine", "ejs");
 // Maintenance middleware. This needs to be commented out when the site is live.
 // This must always be the FIRST route because it will override all other routes
 // when it is uncommented.
-// app.use(function (req, res, next) {
-//     res.render('maintenance');
-// });
+app.use(function (req, res, next) {
+    res.render('maintenance');
+});
 
 //Bulk update / insert
 /**

@@ -82,7 +82,8 @@ header a:hover{
 /* Showcase */
 #showcase{
   min-height:500px;
-  background:url('https://thumbs.dreamstime.com/z/maintenance-against-tools-notepad-wooden-background-word-54354839.jpg') no-repeat 0 -500px;
+  /*background:url('https://thumbs.dreamstime.com/z/maintenance-against-tools-notepad-wooden-background-word-54354839.jpg') no-repeat 0 -500px;*/
+  background-image: url('../img/img3.jpg');
   text-align:center;
   color:#7fff00;
  background-size: cover;
@@ -92,6 +93,7 @@ header a:hover{
   margin-top:200px;
   font-size:55px;
   margin-bottom:10px;
+  color: white;
 }
 
 #showcase p{
@@ -142,8 +144,8 @@ ul#services li{
 }
 
 footer{
-  padding:20px;
-  margin-top:20px;
+  padding:40px;
+  /*margin-top:40px;*/
   color:#ffffff;
   background-color:#e8491d;
   text-align: center;
@@ -170,6 +172,7 @@ footer{
 
   #showcase h1{
     margin-top:40px;
+    color:white;
   }
 
   #newsletter button, .quote button{
