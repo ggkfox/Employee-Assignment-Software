@@ -14,10 +14,10 @@
           <div class="well signup-well-margin">
             <ul>
               <p class="text-center signup-form-text-size"><strong>Sign Up!</strong></p>
-              <form class="center-block">
-                <input class="center-block" placeholder="Username" type="text" required>
-                <input class="center-block" placeholder="E-mail" type="text" required>
-                <input class="center-block" placeholder="Password" type="text" required>
+              <form action="/register" method="POST" class="center-block">
+                <input class="center-block" name="username" placeholder="Username" type="text" required>
+                <!--<input class="center-block" name="E-mail" placeholder="E-mail" type="text" required>-->
+                <input class="center-block" name="password" placeholder="Password" type="password" required>
                 <button class="cetner-block signup-button" type="submit">Sign Up</button>
               </form>
             </ul>
