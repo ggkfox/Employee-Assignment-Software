@@ -135,9 +135,9 @@ app.set("view engine", "ejs");
 // Maintenance middleware. This needs to be commented out when the site is live.
 // This must always be the FIRST route because it will override all other routes
 // when it is uncommented.
-// app.use(function (req, res, next) {
-//     res.render('maintenance');
-// });
+//app.use(function (req, res, next) {
+//    res.render('maintenance');
+//});
 
 //Bulk update / insert
 /**
@@ -302,6 +302,10 @@ app.get("/about", isLoggedIn, function(req, res) {
   res.render("about", {
     user: req.user // get the user out of session and pass to template
   });
+});
+
+app.post("/register", function(req, res){
+  res.send("register post route");
 });
 
 //returns a list of all the schedules defined in the database
