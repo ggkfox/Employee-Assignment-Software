@@ -13,12 +13,20 @@
     "nodemon": "^1.12.1"
   },
   "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.18.2",
     "bower": "^1.8.2",
+    "connect-flash": "^0.1.1",
+    "connect-mongo": "^2.0.0",
+    "cookie-parser": "^1.4.3",
     "ejs": "^2.5.7",
     "express": "^4.15.4",
     "express-fileupload": "^0.2.0",
+    "express-session": "^1.15.6",
+    "method-override": "^2.3.10",
     "mongoose": "^4.11.12",
-    "node-xlsx": "^0.11.0"
+    "node-xlsx": "^0.11.0",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0"
   }
 }
