@@ -1,29 +1,45 @@
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="bootstrap/dist/css/bootstrap.min.css" />
-        <link rel="stylesheet" type="text/css" href="css/style.css" /> 
-        <link rel="stylesheet" type="text/css" href="css/login.css" /> 
-    </head>
- 
-    
-    <body class="signup-background-color">
-        <% include partials/header %>
-        <div class="container-fluid">
-          <div class="well signup-well-margin">
-            <ul>
-              <p class="text-center signup-form-text-size"><strong>Sign Up!</strong></p>
-              <form class="center-block">
-                <input class="center-block" placeholder="Username" type="text" required>
-                <input class="center-block" placeholder="E-mail" type="text" required>
-                <input class="center-block" placeholder="Password" type="text" required>
-                <button class="cetner-block signup-button" type="submit">Sign Up</button>
-              </form>
-            </ul>
-          </div>
-        </div>
-        <% include partials/footer %>
-    </body>
-    
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="bootstrap/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" type="text/css" href="css/style.css" />
+  <link rel="stylesheet" type="text/css" href="css/login.css" />
+</head>
+
+
+<body class="signup-background-color">
+  <% include partials/header %>
+    <div class="container-fluid">
+      <div class="well signup-well-margin">
+        <ul>
+          <p class="text-center signup-form-text-size">
+            <strong>Sign Up!</strong>
+          </p>
+          <form class="center-block" action="/signup" method="post">
+
+            <div class="form-group">
+                <label>Username</label>
+                <input type="text" class="form-control" name="username" placeholder="Username"  maxlength="20" required>
+              </div>
+
+            <div class="form-group">
+                <label>E-mail</label>
+                <input type="email" class="form-control" name="email"  placeholder="E-mail" required>
+              </div>
+              <div class="form-group">
+                <label>Password</label>
+                <input type="password" class="form-control"  placeholder="Password" name="password" required>
+              </div>
+
+
+            <button class="cetner-block signup-button" type="submit">Sign Up</button>
+          </form>
+        </ul>
+      </div>
+    </div>
+    <% include partials/footer %>
+</body>
+
 </html>
