@@ -5,24 +5,48 @@
         <link rel="stylesheet" href="bootstrap/dist/css/bootstrap.min.css" />
         <link rel="stylesheet" type="text/css" href="css/style.css" /> 
         <link rel="stylesheet" type="text/css" href="css/login.css" /> 
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
  
     
-    <body class="signup-background-color">
+    <body class="grey-background">
         <% include partials/header %>
+        
         <div class="container-fluid">
-          <div class="well signup-well-margin">
-            <ul>
-              <p class="text-center signup-form-text-size"><strong>Login!</strong></p>
+              <h2 class="form-header-styles signup-form-text-size"><strong>Login</strong></h2>
               <form class="center-block">
-                <input class="center-block" placeholder="E-mail" type="text" required>
-                <input class="center-block" placeholder="Password" type="text" required>
-                <button class="cetner-block signup-button" type="submit">Login</button>
+                <div>
+                  <input class="center-block form-input-styles" placeholder="E-mail or Username" type="text" required>
+                </div>
+                <div>
+                  <input class="center-block form-input-styles" placeholder="Password" type="text" required>
+                </div>
+                <div style="margin-top: 15px;">
+                    <button class="cetner-block login-button login-button-styles" type="submit">Log in</button>
+                </div>
+                
+                <div>
+                  <p class="center-block form-text-styles">
+                    <a class="form-text-link" href="#">Forgot your username or password?</a>
+                  </p>
+                </div>
+                
+                <div>
+                  <p class="center-block form-text-styles">
+                    Dont have an account? <a class="form-text-link" href="signup">Sign up</a>
+                  </p>
+                  <hr class="login-divider-styles">
+                  <p class="center-block form-text-styles login-filler-margin form-label-styles" >
+                    If you click "Log in" and are not a EAS user, you will be registered <br>and you agree to EAS's <a href="#">Terms & Conditions</a> and <a href="#">Privacy Policy</a>.
+                  </p>
+                </div>
               </form>
-            </ul>
+
           </div>
         </div>
         <% include partials/footer %>
     </body>
-    
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="js/header.js"></script>
 </html>

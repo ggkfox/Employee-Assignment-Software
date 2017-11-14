@@ -80,11 +80,12 @@
 }
 
 .grey-background {
+    background-color: #f1eff1;
 }
 
 footer {
     height: 300px;
-    background-color: rgba(204, 255, 255, .5);
+    background-color: white;
 }
 
 #copyright {
@@ -98,4 +99,73 @@ footer {
     border-color: #9d9d9d;
     height: 100px;
     width: 1px;
+}
+
+.fa {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding: 20px;
+    font-size: 30px;
+    width: 50px;
+    border-radius: 50%;
+    text-align: center;
+    text-decoration: none;
+}
+
+.fa:link{
+    text-decoration: none;
+}
+
+.fa:visited{
+    text-decoration: none;
+}
+
+.fa:hover {
+    opacity: 0.7;
+    text-decoration: none;
+}
+
+.fa:active{
+    text-decoration: none;
+}
+
+.fa-facebook {
+    background: #3B5998;
+    color: white;
+}
+
+.fa-twitter {
+    background: #55ACEE;
+    color: white;
+}
+
+.footer-links-styles{
+    color: black;
+}
+
+.footer-links-hover:link{
+    text-decoration: none;
+}
+
+.footer-links-hover:visited{
+    text-decoration: none;
+}
+
+.footer-links-hover:hover{
+    opacity: 0.7;
+    text-decoration: none;
+}
+
+.footer-links-hover:active{
+    text-decoration: none;
+}
+
+hr { 
+    display: block;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    margin-left: auto;
+    margin-right: auto;
+    border-style: inset;
+    border-width: 1px;
 }

@@ -5,25 +5,59 @@
         <link rel="stylesheet" href="bootstrap/dist/css/bootstrap.min.css" />
         <link rel="stylesheet" type="text/css" href="css/style.css" /> 
         <link rel="stylesheet" type="text/css" href="css/login.css" /> 
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
  
+
     
-    <body class="signup-background-color">
-        <% include partials/header %>
+    <body class="grey-background">
+         <% include partials/header %>
+
         <div class="container-fluid">
-          <div class="well signup-well-margin">
-            <ul>
-              <p class="text-center signup-form-text-size"><strong>Sign Up!</strong></p>
+              <div>
+                <h2 class="form-header-styles signup-form-text-size"><strong>Create your Account for Free!</strong></h2>
+              </div>
               <form class="center-block">
-                <input class="center-block" placeholder="Username" type="text" required>
-                <input class="center-block" placeholder="E-mail" type="text" required>
-                <input class="center-block" placeholder="Password" type="text" required>
-                <button class="cetner-block signup-button" type="submit">Sign Up</button>
+                <div>
+                  <input class="center-block form-input-styles" placeholder="Username" type="text" required>
+                </div>
+                <div>
+                  <input class="center-block form-input-styles" placeholder="E-mail" type="text" required>
+                </div>
+                <div>
+                  <input class="center-block form-input-styles" placeholder="Password" type="text" required>
+                </div>
+                <div>
+                    <input class="center-block form-input-styles" placeholder="Company Name" type="text" required>
+                </div>
+                
+                <div>
+                            <select class="center-block form-input-styles" id="Country" name="Country">
+                            <option value="" disabled selected>Country</option>
+                            <option value="australia">Australia</option>
+                            <option value="canada">Canada</option>
+                            <option value="usa">USA</option>
+                            </select>
+                </div>
+                
+                <div>
+                  <p class="center-block form-text-styles">
+                    By clicking on Sign up, you agree to the <a class="form-text-link">Terms & Conditions</a> and <a class="form-text-link">Privacy Policy</a>
+                  </p>
+                </div>
+                <div>
+                  <button class="cetner-block signup-button form-input-styles" type="submit">Sign Up</button>
+                </div>
+                <div>
+                  <p class="center-block form-text-styles">
+                    Already have an Account? <a class="form-text-link" href="login">Log In</a>
+                  </p>
+                </div>
               </form>
-            </ul>
-          </div>
         </div>
-        <% include partials/footer %>
+                    <% include partials/footer %>
     </body>
-    
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="js/header.js"></script>
 </html>
