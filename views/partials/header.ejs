@@ -23,24 +23,23 @@
                             </li>
                             <li role="separator" class="divider"></li>
                             <li><a><%= (user.local.username) %></a></li>
-                                <%}%>
+                        <% } %>
 
-                                    <%if (typeof user !='undefined') { %>
-                                        <li class="navlist">
-                                            <a href="logout">
-                                                <span class="glyphicon glyphicon-user"></span> Log Out</a>
-                                        </li>
-                                        <% } else {%>
-                                            <li class="navlist">
-                                                <a href="signup">
-                                                    <span class="glyphicon glyphicon-user"></span> Sign Up</a>
-                                            </li>
-                                            <li class="navlist">
-                                                <a href="login">
-                                                    <span class="glyphicon glyphicon-log-in"></span> Login</a>
-                                            </li>
-                                            <% } %>
-
+                        <%if (typeof user !='undefined') { %>
+                            <li class="navlist">
+                                <a href="logout">
+                                    <span class="glyphicon glyphicon-user"></span> Log Out</a>
+                            </li>
+                        <% } else {%>
+                            <li class="navlist">
+                                <a href="signup">
+                                    <span class="glyphicon glyphicon-user"></span> Sign Up</a>
+                            </li>
+                            <li class="navlist">
+                                <a href="login">
+                                    <span class="glyphicon glyphicon-log-in"></span> Login</a>
+                            </li>
+                        <% } %>
                     </ul>
                 </div>
             </div>

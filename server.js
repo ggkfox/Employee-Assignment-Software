@@ -277,7 +277,9 @@ app.post("/upload", isLoggedIn, function(req, res) {
 });
 // Home page
 app.get("/", function(req, res) {
-  res.render("home");
+  res.render("home", {
+    user: req.user // get the user out of session and pass to template
+  });
 });
 
 app.get("/login", function(req, res) {
