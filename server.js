@@ -135,9 +135,9 @@ app.set("view engine", "ejs");
 // Maintenance middleware. This needs to be commented out when the site is live.
 // This must always be the FIRST route because it will override all other routes
 // when it is uncommented.
-//app.use(function (req, res, next) {
-//    res.render('maintenance');
-//});
+// app.use(function (req, res, next) {
+//     res.render('maintenance');
+// });
 
 //Bulk update / insert
 /**
@@ -613,9 +613,9 @@ app.post("/saveRotation", isLoggedIn, function(req, res) {
 // exist. We will serve up a template.
 // This must always be the last route otherwise it will always load before other
 // routes.
-// app.get("/*", function(req, res) {
-//   res.render("unknown");
-// });
+app.get("/*", function(req, res) {
+  res.render("unknown");
+});
 
 var port = process.env.PORT || 3000;
 var ip = process.env.IP;
