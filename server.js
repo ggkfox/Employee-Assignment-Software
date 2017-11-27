@@ -306,7 +306,7 @@ app.get("/about", isLoggedIn, function(req, res) {
   });
 });
 
-app.post("/register", function(req, res){
+app.post("/register", function(req, res) {
   res.send("register post route");
 });
 
@@ -326,13 +326,19 @@ app.get("/schedules", isLoggedIn, function(req, res) {
         return res.json({
           schedules: schedules.map(function(schedule) {
             var filled = true;
-            schedule.placements.forEach(function(placement) {
-              if (placement.employees.length <= 0) {
-                filled = false;
-              }
-            });
+            var sched = schedule.toObject();
+            if (schedule.filled) {
+              sched.placements = sched.placements.map(function(placement) {
+                if (placement.employees.length <= 0) {
+                  return Object.assign({}, placement, {
+                    employees: [{ fname: "Empty", lname: "" }]
+                  });
+                }
+                return placement;
+              });
+            }
 
-            return Object.assign({}, schedule.toObject(), { filled });
+            return sched;
           }),
           employeeCount: count
         });
@@ -344,7 +350,8 @@ app.post("/generateSchedule", isLoggedIn, function(req, res) {
   // find latest schedule where filled == undefined
   Schedule.find(
     {
-      "placements.employees": { $exists: true, $eq: [] },
+      // "placements.employees": { $exists: true, $eq: [] },
+      filled: false,
       userId: req.user.id
     },
     function(error, unfilled_schedules) {
@@ -361,7 +368,11 @@ app.post("/generateSchedule", isLoggedIn, function(req, res) {
       //Treat each station in different schedules differently
       unfilled_schedules.forEach(function(sched) {
         sched.placements.forEach(function(placement) {
-          stations.push({ shedule: sched, name: placement.stationName, capacity: 1 });
+          stations.push({
+            shedule: sched,
+            name: placement.stationName,
+            capacity: 1
+          });
         });
       });
 
@@ -385,10 +396,13 @@ app.post("/generateSchedule", isLoggedIn, function(req, res) {
             //  calculate visits;
             schedules.forEach(function(schedule) {
               //only use stations that exist in the database already
-              schedule.placements = schedule.placements.filter(function(placement) {
+              schedule.placements = schedule.placements.filter(function(
+                placement
+              ) {
                 var stationExists = null;
                 stations.forEach(function(station) {
-                  stationExists = stationExists || station.name == placement.stationName;
+                  stationExists =
+                    stationExists || station.name == placement.stationName;
                 });
                 return stationExists;
               });
@@ -475,7 +489,8 @@ app.post("/generateSchedule", isLoggedIn, function(req, res) {
               }
 
               if (
-                preferredstation.placements.length < preferredstation.capacity &&
+                preferredstation.placements.length <
+                  preferredstation.capacity &&
                 !employee.placed
               ) {
                 preferredstation.placements.push(employee);
@@ -491,7 +506,10 @@ app.post("/generateSchedule", isLoggedIn, function(req, res) {
                       station.placements = [];
                     }
                     //place the employee in a slot
-                    if (station.placements.length < station.capacity && !employee.placed) {
+                    if (
+                      station.placements.length < station.capacity &&
+                      !employee.placed
+                    ) {
                       station.placements.push(employee);
                       employee.placed = true;
                     }
@@ -503,7 +521,10 @@ app.post("/generateSchedule", isLoggedIn, function(req, res) {
                 if (!station.placements) {
                   station.placements = [];
                 }
-                if (station.placements.length < station.capacity && !employee.placed) {
+                if (
+                  station.placements.length < station.capacity &&
+                  !employee.placed
+                ) {
                   station.placements.push(employee);
                   employee.placed = true;
                 }
@@ -592,9 +613,9 @@ app.post("/saveRotation", isLoggedIn, function(req, res) {
 // exist. We will serve up a template.
 // This must always be the last route otherwise it will always load before other
 // routes.
-app.get("/*", function(req, res) {
-  res.render("unknown");
-});
+// app.get("/*", function(req, res) {
+//   res.render("unknown");
+// });
 
 var port = process.env.PORT || 3000;
 var ip = process.env.IP;

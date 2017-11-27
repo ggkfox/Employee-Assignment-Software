@@ -12,6 +12,7 @@
         body {
             background-color: #f2f2f2;
         }
+
         #loader {
             position: absolute;
             left: 50%;
@@ -118,79 +119,81 @@
 </head>
 
 <body>
-    
+
     <% include partials/header %>
- 
-    <!--BODY STARTS HERE-->
-    <div class="container-fluid" style="margin-top:100px">
-        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#addEmployeesModal" id="addEmployees" style="left:20px; position:absolute;font-size:20;z-index:99">Add Employees</button>
-        <button type="button" class="btn btn-warning btn-lg" data-toggle="modal" id="addSchedule" style="float: right; margin: 5px; font-size:20;z-index:99">Add Rotation</button>
-        <button type="button" class="btn btn-success btn-lg" data-toggle="modal" id="generateSchedule" style="float: right; margin: 5px; font-size:20;z-index:99">Generate Schedule</button>
-        <button type="button" class="btn btn-danger btn-lg" data-toggle="modal" id="clearspots" style="float: right; margin: 5px; font-size:20;z-index:99">Clear Spots</button></button>
-        <div style="margin-top:50px">
-            <div class="loader" id="loader"></div>
-            <div style="display:none;" id="scheduleList" class="animate-bottom"></div>
-        </div>
+
+        <!--BODY STARTS HERE-->
+        <div class="container-fluid" style="margin-top:100px">
+            <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#addEmployeesModal" id="addEmployees"
+                style="left:20px; position:absolute;font-size:20;z-index:99">Add Employees</button>
+            <button type="button" class="btn btn-warning btn-lg" data-toggle="modal" id="addSchedule" style="float: right; margin: 5px; font-size:20;z-index:99">Add Rotation</button>
+            <button type="button" class="btn btn-success btn-lg" data-toggle="modal" id="generateSchedule" style="float: right; margin: 5px; font-size:20;z-index:99">Generate Schedule</button>
+            <button type="button" class="btn btn-danger btn-lg" data-toggle="modal" id="clearspots" style="float: right; margin: 5px; font-size:20;z-index:99">Clear Spots</button>
+            </button>
+            <div style="margin-top:50px">
+                <div class="loader" id="loader"></div>
+                <div style="display:none;" id="scheduleList" class="animate-bottom"></div>
+            </div>
             <div class="modal fade" id="addEmployeesModal" tabindex="-1" role="dialog" aria-labelledby="addEmployeesModalLabel">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                        <h4 class="modal-title" id="addEmployeesModalLabel">Upload an employee list</h4>
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <h4 class="modal-title" id="addEmployeesModalLabel">Upload an employee list</h4>
+                        </div>
+                        <div class="modal-body">
+                            <form ref='uploadForm' id='uploadForm' action='/upload' method='post' encType="multipart/form-data">
+                                <input class="form-control" type="file" name="employeeList" id="employeeList" />
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <input class="btn btn-primary" type='button' id="uploadEmployeesButton" value='Upload' />
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
                     </div>
-                    <div class="modal-body">
-                        <form ref='uploadForm' id='uploadForm' action='/upload' method='post' encType="multipart/form-data">
-                            <input class="form-control" type="file" name="employeeList" id="employeeList" />
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <input class="btn btn-primary" type='button' id="uploadEmployeesButton" value='Upload' />
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+                <!-- /.modal -->
+            </div>
+            <!-- Add Schedule Modal Popup -->
+            <!-- Modal -->
+            <div class="modal fade" id="addNewScheduleModal" tabindex="-1" role="dialog" aria-labelledby="addNewScheduleModalLabel">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <h4 class="modal-title" id="addNewScheduleModalLabel">Add A New Rotation</h4>
+                        </div>
+                        <div class="modal-body">
+                            <!--Shows error state-->
+                            <p id="error"></p>
+                            <!--Dropdown for number of stations-->
+                            <div class="form-group">
+                                <label for="sel1">Name Of Rotation:</label>
+                                <input id="rotationName" name="rotationName" class="form-control" placeholder="e.g. Rotation 1" value="Rotation 1" />
+                            </div>
+                            <div class="panel panel-default">
+                                <div class="panel-heading">Stations:</div>
+                                <div class="panel-body">
+                                    <div id="stationList"></div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary" id="submitSchedule">Save changes</button>
+                        </div>
                     </div>
                 </div>
             </div>
             <!-- /.modal -->
         </div>
-        <!-- Add Schedule Modal Popup -->
-        <!-- Modal -->
-        <div class="modal fade" id="addNewScheduleModal" tabindex="-1" role="dialog" aria-labelledby="addNewScheduleModalLabel">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                        <h4 class="modal-title" id="addNewScheduleModalLabel">Add A New Rotation</h4>
-                    </div>
-                    <div class="modal-body">
-                        <!--Shows error state-->
-                        <p id="error"></p>
-                        <!--Dropdown for number of stations-->
-                        <div class="form-group">
-                            <label for="sel1">Name Of Rotation:</label>
-                            <input id="rotationName" name="rotationName" class="form-control" placeholder="e.g. Rotation 1" value="Rotation 1" />
-                            </div>
-                        <div class="panel panel-default">
-                            <div class="panel-heading">Stations:</div>
-                            <div class="panel-body">
-                                <div id="stationList"></div>
-                            </div>
-                        </div>
+        <% include partials/footer %>
 
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary" id="submitSchedule">Save changes</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- /.modal -->
-    </div>
-    <% include partials/footer %>
-    
 </body>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script src="bootstrap/dist/js/bootstrap.min.js"></script>
@@ -229,8 +232,8 @@
             });
         });
 
-// disabled by default
-// $("#generateSchedule").prop('disabled', true);
+        // disabled by default
+        // $("#generateSchedule").prop('disabled', true);
         //load schedule when page is first opened
         loadSchedules();
 
@@ -245,14 +248,14 @@
                 dataType: "json",
                 contentType: "application/json; charset=utf-8"
             }).done(function (data) {
-                console.log("data",data)
+                console.log("data", data)
                 var scheduleList = $('#scheduleList');
                 scheduleList.html(""); // clear whatever is there
                 if (data.schedules.length > 0) {
 
                     data.schedules.forEach(function (schedule) {
 
-                        if (!schedule.filled && data.employeeCount > 0 )
+                        if (!schedule.filled && data.employeeCount > 0)
                             $("#generateSchedule").prop('disabled', false);
 
                         var placements = schedule.placements;
@@ -264,7 +267,7 @@
                             ' <div class="modal-body">' +
                             '<table class="table table-bordered">'
                             + '<thead><th colspan="2">' + schedule.name + '</th></thead>' +
-                            placements.map(function (placement) { return '<tr><td>' + placement.stationName + '</td><td>' + (schedule.filled ? placement.employees[0].fname + " " + placement.employees[0].lname : "") + '</td></tr>' }).join('') +
+                            placements.map(function (placement) { return '<tr><td>' + placement.stationName + '</td><td>' + (schedule.filled && placement.employees[0] ? placement.employees[0].fname + " " + placement.employees[0].lname : "") + '</td></tr>' }).join('') +
                             '</table>' +
                             '</div>' +
                             '</div>' +
@@ -358,7 +361,7 @@
                 clearSheduleModal();
                 loadSchedules();
             }).fail(function (data) {
-                
+
                 alert("Failed to generate schedule: " + JSON.stringify(data));
                 $("#error").html("<b style='color:red'>An error occurred</b>");
             });
