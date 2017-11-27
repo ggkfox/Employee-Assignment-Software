@@ -1,29 +1,163 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Error</title>
-    <link rel="stylesheet" href="bootstrap/dist/css/bootstrap.min.css" />
+<head>
+    <link rel="stylesheet" href="bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <link rel="stylesheet" type="text/css" href="css/unknown.css">
+
+    <title>Error</title>
+</head>
+<body>
+    <% include partials/header %>
+    <div id="athead"></div>
+    <div class="offer">
+      <h2 class="mainTitle">Error. We've searched and that page does not exist...</h2>
+      <h3 class="secondTitle">
+        But that doesn't mean your schedules don't. 
+        <a href="https://https://worknode-alan947.c9users.io">Return home</a>
+        to take advantage of this free service!
+      </h3>
+    </div>
     
-  </head>
-  <body>
-  	<div id="highTop"></div>
-  	<div id="container">
-      <% include partials/header %>
-  		
-  		<h1 id="error"> Error </h1>
-  		 	 			
- 	 		<div id="belowHeader">
-  			The URL request was not found.
-  			<p id="insideBelowHeader"> That page does not exist.</p>
-  		</div>
-  		
-      <% include partials/footer %>
-			
-  	</div>
-  	
-  </body>
+    <!--<center>-->
+    <div id="carStyle">
+      <!--Carousel backbone from https://www.w3schools.com/bootstrap/bootstrap_carousel.asp-->
+    <div id="car" class="carousel slide" data-ride="carousel">
+      <!-- Indicators -->
+      <ol class="carousel-indicators">
+      <li data-target="#car" data-slide-to="0" class="active"></li>
+      <li data-target="#car" data-slide-to="1"></li>
+      </ol>
+
+      <!--Slides-->
+      <div class="carousel-inner">
+        <div class="item active">
+            <h2 class="carTitle">Don't complicate your life</h2>
+            <!--original image: https://static.pexels.com/photos/212286/pexels-photo-212286.jpeg -->
+            <img src="https://i.imgur.com/JDFHXu4.jpg" alt="Join today">
+        </div>
+
+        <div class="item">
+            <h2 class="carTitle">Focus on your priorities</h2>  
+          <!-- original image: https://static.pexels.com/photos/669619/pexels-photo-669619.jpeg-->
+        <img src="https://i.imgur.com/0S9hSln.jpg" alt="Information stuff">
+        </div>
+      </div>
+
+      <!--Move left/right-->  
+      <a class="left carousel-control" href="#car" data-slide="prev">
+        <!--switch to the left-->
+        <span class="glyphicon glyphicon-chevron-left"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+
+      <a class="right carousel-control" href="#car" data-slide="next">
+        <!--switch to the right-->
+        <span class="glyphicon glyphicon-chevron-right"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div>
+    </div>
+    <!--</center>-->
+
+    <form id="buttonDiv">
+      <input class="perkButton" type="button" value="Let EAS do the work for you"
+      onclick="window.location.href='https://worknode-alan947.c9users.io/signup'" />
+    </form>
+
+    <div id="below-car"></div>
+    <center>
+    <div class="perks">
+      <h2 id="h2perk">A simple tool that goes a long way</h2>
+      <h3 id="h3perks">Built with employers in mind.</h3>
+      <div>
+        <ul class="imageInfo">
+          <li>  
+            <img class="resizeimage" src="https://i.imgur.com/y8whw4T.png" alt="clock">
+            <h6>Make time count</h6>
+              <br />We all know that time is money so <br />
+              why waste it on something that <br />
+              could be automated. EAS takes care <br />
+              of the details so that you can <br />
+              focus on your business.
+          </li>
+          <li>           
+            <img class="resizeimage" src="https://i.imgur.com/FH2pQtj.png" alt="scale">
+            <h6>Keep things fair</h6>
+            <br />EAS uses an efficient algorithm <br>
+              to evenly distribute tasks among <br>
+              workers. This means workers won't <br>
+              be stuck doing the same routine.
+          </li>
+          <li>
+            <img class="resizeimage" src="https://i.imgur.com/54060UA.png" alt="chart">
+            <h6>Increase productivity</h6>
+            <br /> Don't let lack of interests<br>
+            hurt productivity. EAS helps boost <br>
+            your employees' interest by <br>
+            letting them experience different <br>
+            tasks.
+          </li>
+        </ul>
+      </div>
+      
+      <form id="buttonDiv">
+        <input class="buttonH" type="button" value="Learn more about EAS"
+        onclick="window.location.href='https://worknode-alan947.c9users.io'" />
+      </form>
+      <!-- to give button more run below (increase margin)-->
+      <div id="bl"></div>
+    </div> <!--END PERKS-->
+    </center>
+    
+    <div class="simple">
+      <div id="containerC">
+        <!--circle inspired by gitlab.com-->
+      <div id="circles">
+      <div id="bigC">
+        <h5 id="bCh">Unlimited</h5>
+        <p id="bCp">
+          Generate as many schedules as your business needs
+        </p>
+      </div>
+      </div>
+      
+      <div id="smallCircleDiv">
+        <div id="smallC">
+        <h5 id="sCh">100% Free</h5>
+        <p id="sCp">
+          Free means free you can't beat a deal like this!
+        </p>
+      </div>
+      </div>
+      
+      <div id="circleInfo">
+      <div class="moreInfo">
+        <h2>Simplify your life</h2>
+        <p>
+          With EAS's easy-to-use interface, creating schedules
+          will no longer be a time-consuming task. Plus it's simple, all it
+          takes is the click of a button. And did we mention it's all free.
+        </p>
+      </article>
+      <aside>
+        <div>
+        Automatically generate schedules
+        </div>
+        <br/>
+        <div>
+        EAS accomodates to fit your needs
+        </div>
+      </aside>
+    </div>
+    </div>
+    </div>
+    </div>
+    <% include partials/footer %>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="js/header.js"></script>
+
+</body>
 </html>

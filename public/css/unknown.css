@@ -1,26 +1,246 @@
-html,body{
-  margin: 0;
-}
 body{
-  background: white;/*rgba(230,88,84,0.6);*/
+  margin: 0px;
+  background: linear-gradient(to bottom right, #231a3d, #6b4fbb);
   background-size: cover;
   font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
 }
+
+header{
+  background-color: white;
+}
+
+#athead{
+  background-color: white;
+  height: 70px;
+}
+
+.mainTitle{
+  font-weight: 400;
+}
+
+.secondTitle{
+  font-weight: 300;
+}
+
+.carousel{
+  margin: 0 auto;
+}
+
+.carDiv{
+  height: 50px;
+  text-align: right;
+}
+
+#carouselDiv{
+  height: 70px;
+  background-color: orange;
+}
+
+
+#repositionCar{
+  height: 50px;
+}
+
+.carousel {
+  width:640px;
+  height:360px;
+}
+
+.carTitle{
+  font-weight: 400;
+}
+#positionDivLow{
+  height: 50px;  
+}
+
+.footer {
+ position: absolute;
+ bottom: 0;
+ width: 100%;
+}
+
 #highTop{
   margin: auto;
   height: 70px;
   background-color: rgba(230,88,84,0.6);
 
 }
-#container{
-  height: 50px;
-  margin: auto;  
+
+.offer{
+  color: white;
+  text-align: center;
 }
-/*
-header{
-  background: #333;
-  height: 45px;
-}*/
+
+
+#carStyle{
+  text-align: center;
+  color: white;
+  margin: 0 auto;
+}
+
+#margB{
+  margin-bottom: 15px;
+}
+
+.perkButton{
+  border-radius: 2px;
+  padding: 7px;
+  color: white;
+  background-color: rgb(69,145,233);
+  border: none;
+}
+.perks{
+  background-color: rgb(249,249,249);
+  height: auto;
+  margin: 0 auto;
+}
+#h2perk{
+  color: #79589F;
+  text-align: center;
+  font-weight: 400;
+}
+
+#h3perks{
+  color: #9B9FA2;
+  text-align: center;
+  margin-bottom: 25px;
+  font-weight: 300;
+}
+.imageInfo li{
+  display: inline-block;
+  margin: auto;
+  padding-right: 180px;
+  /*margin-right: 180px;*/
+}
+
+#bl{
+  height: 5px;
+}
+
+.resizeimage{
+  max-width: 100%;
+  height: 50px;
+  width: 50px;
+}
+
+#buttonDiv{
+  text-align: center;
+  margin-top: 29px;
+}
+
+.buttonH{
+  border-radius: 2px;
+  padding: 7px;
+  color: white;
+  background-color: #79589F;
+  border: none;
+}
+
+.moreInfo{
+  text-align: center;
+  float: none;
+}
+
+.moreInfo h2{
+  font-weight: 400;
+}
+
+.simple{
+  color: white;
+}
+
+#containerC{
+  display: flex;
+}
+
+#containerC circles, #containerC smallCircleDiv, #containerC circleInfo{
+  display: inline-block;
+}
+
+#circles{
+  margin-left: 20px;
+  margin-right: auto;
+  float: none;
+}
+
+#bigC{ 
+  margin-top: 25px;
+  margin-bottom: 20px;
+  background-image: linear-gradient(to top, #fca326 0%, #e24329 100%);
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  width: 320px;
+  height: 320px;
+  border-radius: 100%;
+  text-align: center;
+}
+
+#bCh{
+  font-weight: 900;
+  font-size: 400%;
+}
+
+#bCp{
+  font-weight: 300;
+  font-size: 150%;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+#smallCircleDiv{
+  margin-left: 46px;
+}
+
+#smallC{ 
+  margin-top: 60px;
+  margin-bottom: 20px;
+  margin-left: 40px;
+  background-image: linear-gradient(to top, #00BFFF 0%, blue 100%);
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  width: 250px;
+  height: 250px;
+  border-radius: 100%;
+  text-align: center;
+}
+
+#sCh{
+  font-weight: 700;
+  font-size: 300%;
+}
+
+#sCp{
+  font-weight: 200;
+  font-size: 130%;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.moreInfo p{
+  width: auto;
+  word-wrap: break-word;
+  margin-left: 50px;
+  font-weight: 300;
+  font-size: 150%;
+}
+
+aside{
+    min-height: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    float: none;
+}
+
+footer{
+  background-color: white;
+  color: black;
+}
+
+.footer-links-styles{
+  color: black;
+}
 
 .unlistHead{
   color: #fff;
@@ -36,47 +256,10 @@ header{
   color: rgb(222,222,222);
 }
 
-#error{
-  margin: 0;
-  color: white;
-  height: 75px;
-  background-color: rgba(230,88,84,0.6);
-}
-
 #belowHeader{
   margin: 0;
   font-weight: 500;
   color: rgba(255,255,255,0.75);
   height: 175px;
   background-color: rgba(230,88,84,0.6);
-}
-
-#insideBelowHeader{
-  font-size: .8em;
-}
-
-footer{
-  position: absolute;
-  width: 100%;
-  bottom: 0;
-  height: 250px;
-}
-
-h6{
-  color: white;
-}
-
-.unlist{
-  padding: 0;
-  margin: 0;
-  line-height: 3;
-  display: table;
-  text-decoration: none;
-  color: #fff;
-  list-style: none;
-}
-
-.unlist:hover{
-  cursor: pointer;
-  color: rgb(222,222,222);
 }
