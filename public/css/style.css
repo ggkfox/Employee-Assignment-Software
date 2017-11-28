@@ -176,3 +176,8 @@ hr {
     border-style: inset;
     border-width: 1px;
 }
+
+.parallax{
+    background-attachment: fixed;
+    background-size: cover;
+}
