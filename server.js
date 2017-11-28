@@ -614,7 +614,9 @@ app.post("/saveRotation", isLoggedIn, function(req, res) {
 // This must always be the last route otherwise it will always load before other
 // routes.
 app.get("/*", function(req, res) {
-  res.render("unknown");
+  res.render("unknown", {
+    user: req.user // get the user out of session and pass to template
+  });
 });
 
 var port = process.env.PORT || 3000;

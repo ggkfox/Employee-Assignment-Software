@@ -9,17 +9,21 @@
 /*Header Starts Here*/
 
 .navbar {
-    background-color: rgba(204, 255, 255, .5);
+    /*background-color: rgba(204, 255, 255, .5);*/
+    background-color: rgba(255, 255, 255, .5);
     height: 70px;
     border: hidden;
+    position: absolute;
 }
 
 .navbar-brand {
-    font-family: 'Lobster', cursive;
+    font-family: 'Supermercado One', cursive;
+    font-size: 400%;
 }
 
 .navbar-brand a, #myNavbar ul li * {
-    color: black;
+    color: rgb(136,136,136);
+    text-decoration: none;
 }
 
 .navbar-header, #myNavbar {
@@ -40,17 +44,20 @@
     border-radius: 5px;
 }
 
-.navlist:hover {
-    background-color: #66ffff;
-}
+/*.navlist:hover {*/
+/*    background-color: #66ffff;*/
+/*}*/
 
 /*Header Ends HERE */
 /* body Starts HERE */
+
 
 .hero {
     height: 650px;
     background-image: url('../img/img2.jpg');
     background-position: center;
+    background-repeat: no-repeat;
+    background-size: 180%;
 }
 
 #myCarousel {
@@ -81,7 +88,7 @@
 
 footer {
     height: 300px;
-    background-color: white;
+    background-color: #f1eff1;
 }
 
 #copyright {
