@@ -26,6 +26,10 @@
     text-decoration: none;
 }
 
+#myNavbar ul li *:hover {
+    background-color: rgba(255, 255, 255, .5);
+}
+
 .navbar-header, #myNavbar {
     padding-top: 10px;
 }
@@ -39,10 +43,16 @@
 }
 
 .navlist {
-    margin: 0 3px;
-    border: 1px solid black;
-    border-radius: 5px;
+    font-size: 13pt;
+    /*margin: 0 3px;*/
+    /*border: 1px solid black;*/
+    /*border-radius: 5px;*/
 }
+
+#usernameAppFontSize {
+    font-size: 13pt;
+}
+
 
 /*.navlist:hover {*/
 /*    background-color: #66ffff;*/
