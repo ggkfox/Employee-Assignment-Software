@@ -20,7 +20,8 @@ require("./passport-local")(passport); // configure passport
 // Mongoose allows us an easy way to get our app to interact with our MongoDB
 // database.
 var mongoose = require("mongoose");
-mongoose.connect(db);
+// mongoose.connect(db);
+mongoose.connect("mongodb://edgehead178:4414gandiva*@ds123976.mlab.com:23976/eas");
 
 //Added schema for how the schedules are stored in the database
 var scheduleSchema = new mongoose.Schema(
