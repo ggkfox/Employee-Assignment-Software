@@ -13,7 +13,7 @@ var flash = require("connect-flash");
 var app = express();
 
 
-process.env.DBURL="mongodb://localhost/lifeguard";
+// process.env.DBURL="mongodb://localhost/lifeguard";
 console.log(process.env.DBURL);
 
 // var db = "mongodb://localhost/lifeguard";
