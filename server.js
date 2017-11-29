@@ -12,8 +12,13 @@ var session = require("express-session");
 var flash = require("connect-flash");
 var app = express();
 
+
+process.env.DBURL="mongodb://localhost/lifeguard";
+console.log(process.env.DBURL);
+
 // var db = "mongodb://localhost/lifeguard";
-var db = "mongodb://edgehead178:4414gandiva*@ds123976.mlab.com:23976/eas";
+// var db = "mongodb://edgehead178:4414gandiva*@ds123976.mlab.com:23976/eas";
+var db = process.env.DBURL;
 var sessionStore = require("connect-mongo")(session);
 
 require("./passport-local")(passport); // configure passport
@@ -21,7 +26,6 @@ require("./passport-local")(passport); // configure passport
 // Mongoose allows us an easy way to get our app to interact with our MongoDB
 // database.
 var mongoose = require("mongoose");
-// mongoose.connect(db);
 mongoose.connect(db);
 
 //Added schema for how the schedules are stored in the database
