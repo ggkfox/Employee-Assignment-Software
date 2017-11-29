@@ -88,7 +88,7 @@
 
 footer {
     height: 300px;
-    background-color: #f1eff1;
+    background-color: white;
 }
 
 #copyright {
@@ -105,7 +105,7 @@ footer {
 }
 
 .grey-background {
-    background-color: #f1eff1;
+    background-color: white;
 }
 
 .fa {
