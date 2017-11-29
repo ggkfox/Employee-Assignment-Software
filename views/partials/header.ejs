@@ -17,7 +17,7 @@
                 <div class="collapse navbar-collapse" id="myNavbar">
                     <!--RIGHT HAND SIDE NAV BAR-->
                     <ul class="nav navbar-nav navbar-right" id="usernameAppFontSize">
-                        <%if (typeof user !='undefined') { %>
+                        <% if (typeof user !='undefined') { %>
                             <li>
                                 <a href="about">App</a>
                             </li>
@@ -25,7 +25,7 @@
                             <li><a><%= (user.local.username) %></a></li>
                         <% } %>
 
-                        <%if (typeof user !='undefined') { %>
+                        <% if (typeof user !='undefined') { %>
                             <li class="navlist">
                                 <a href="logout">
                                     <span class="glyphicon glyphicon-user"></span> Log Out</a>

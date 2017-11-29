@@ -74,6 +74,11 @@
     margin-top: 100px;
 }
 
+#getStartedBtn {
+    text-decoration: none;
+}
+
+
 .item {
     height: 400px;
 }
@@ -92,8 +97,10 @@
 .start-button {
     display: block;
     margin: 0 auto;
-    padding: 25px;
+    padding: 20px;
     margin-top: 20px;
+    border-radius: 0 !important;
+    outline-color: none;
 }
 
 footer {

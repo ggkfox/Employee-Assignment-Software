@@ -12,7 +12,7 @@
         
         <% include partials/header %>
         
-        <div class="container-fluid hero parallax">
+        <div class="container-fluid hero">
             <div id="myCarousel" class="container carousel slide" data-ride="carousel">
                 <ol class="carousel-indicators">
                     <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -32,15 +32,15 @@
                 </div>
             </div>
             <div>
-                    <%if (typeof user !='undefined') { %>
-                        <a class="button-styles" href="about">
-                            <button class="start-button btn btn-success btn-lg">Get Started!</button>
-                        </a>
-                    <% } else { %>
-                        <a class="button-styles"href="signup">
-                            <button class="start-button btn btn-success btn-lg">Get Started!</button>
-                        </a>
-                    <% } %>
+                <%if (typeof user !='undefined') { %>
+                    <a href="/about" id="getStartedBtn">
+                        <button class="start-button btn btn-success btn-lg">Make Your Schedules!</button>
+                    </a>
+                <% } else {%>
+                    <a href="/signup" id="getStartedBtn">
+                        <button class="start-button btn btn-success btn-lg">Get Started!</button>
+                    </a>
+                <% }%>
             </div>
         </div>
         <div class="row grey-background">
