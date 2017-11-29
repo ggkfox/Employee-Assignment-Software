@@ -12,7 +12,7 @@ var session = require("express-session");
 var flash = require("connect-flash");
 var app = express();
 
-var db = "mongodb://localhost/lifeguard";
+// var db = "mongodb://localhost/lifeguard";
 var sessionStore = require("connect-mongo")(session);
 
 require("./passport-local")(passport); // configure passport
