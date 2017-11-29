@@ -17,8 +17,7 @@ var app = express();
 console.log(process.env.DBURL);
 
 // var db = "mongodb://localhost/lifeguard";
-// var db = "mongodb://edgehead178:4414gandiva*@ds123976.mlab.com:23976/eas";
-var db = process.env.DBURL;
+var db = process.env.DBURL || "mongodb://localhost/lifeguard";
 var sessionStore = require("connect-mongo")(session);
 
 require("./passport-local")(passport); // configure passport
