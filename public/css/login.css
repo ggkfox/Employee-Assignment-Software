@@ -1,5 +1,5 @@
 .signup-well-margin{
-    margin: 80px 30% 60px 30%;
+    margin: 200px 30% 120px 30%;
 }
 .signup-background-color{
     background-color: white;
@@ -21,6 +21,6 @@
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
-    border-radius: 12px;
-    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+    border-radius: 0;
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.24);
 }
