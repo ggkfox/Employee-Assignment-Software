@@ -4,7 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>EAS</title>
-  <link rel="stylesheet" href="bootstrap/dist/css/bootstrap.min.css" />
+  <!--<link rel="stylesheet" href="bootstrap/dist/css/bootstrap.min.css" />-->
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
   <link rel="stylesheet" type="text/css" href="css/style.css" />
   <link rel="stylesheet" type="text/css" href="css/login.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -16,7 +17,8 @@
 <body class="signup-background-color">
   <% include partials/header %>
     <div class="container-fluid">
-      <div class="well signup-well-margin">
+      <div class="row">
+      <div class="well signup-well-margin col-md-offset-3 col-md-6 col-sm-12 col-xm-12">
         <ul>
           <p class="text-center signup-form-text-size">
             <strong>Sign Up!</strong>
@@ -41,6 +43,7 @@
             <button class="cetner-block signup-button" type="submit">Sign Up</button>
           </form>
         </ul>
+      </div>
       </div>
     </div>
     <% include partials/footer %>
