@@ -20,7 +20,7 @@
             <button type="button" class="btn yellow opp-btn btn-lg" data-toggle="modal" id="addSchedule" style="float: right; margin: 5px; font-size:20;z-index:99">Add Rotation</button>
             <button type="button" class="btn green opp-btn btn-lg" data-toggle="modal" id="generateSchedule" style="float: right; margin: 5px; font-size:20;z-index:99">Generate Schedule</button>
             <button type="button" class="btn red opp-btn btn-lg" data-toggle="modal" id="clearSpots" style="float: right; margin: 5px; font-size:20;z-index:99">Remove Employees</button>
-            </button>
+            
             <div style="margin-top:50px">
                 <div class="loader" id="loader"></div>
                 <div style="display:none;" id="scheduleList" class="animate-bottom"></div>
@@ -448,6 +448,11 @@
 
             })
         }
+        // Select all elements with data-toggle="tooltips" in the document
+        $('[data-toggle="tooltip"]').tooltip(); 
+
+        // Select a specified element
+        $('#myTooltip').tooltip();
 
     })
 </script>
