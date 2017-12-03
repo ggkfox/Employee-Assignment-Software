@@ -47,6 +47,27 @@
                 </div>
                 <!-- /.modal -->
             </div>
+            <!-- Successfully deleted employees popup -->
+            <!-- Modal -->
+            <div class="modal fade" id="clearedEmployees" tabindex="-1" role="dialog" aria-labelledby="addNewScheduleModalLabel">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <h4 class="modal-title" id="addNewScheduleModalLabel">Message</h4>
+                        </div>
+                        <div class="modal-body">
+                            Congratulations, You have Successfully cleared all employees from the database!!!
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Okay</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.modal -->
             <!-- Add Schedule Modal Popup -->
             <!-- Modal -->
             <div class="modal fade" id="addNewScheduleModal" tabindex="-1" role="dialog" aria-labelledby="addNewScheduleModalLabel">
@@ -117,11 +138,30 @@
                 console.log(data);
                 alert(data);
                 $('#addEmployeesModal').modal('hide');
+                //Assume atleast one employee was added
+                $("#generateSchedule").prop('disabled', false);
+                $("#clearSpots").prop('disabled', false);
             }).fail(function (error) {
                 console.log(error);
                 alert(error);
             });
         });
+
+        window.hideSchedule = function (_id) {
+            // alert("About to hide: " + _id);
+            $.ajax({
+                type: "POST",
+                url: "/hideSchedule",
+                data: JSON.stringify({ id: _id }),
+                dataType: "json",
+                contentType: "application/json; charset=utf-8"
+            }).done(function (data) {
+                alert("Successfully hidden schedule");
+                loadSchedules();
+            }).fail(function (data) {
+                alert("Failed to hide schedule: " + JSON.stringify(data));
+            });
+        }
 
         // disabled by default
         // $("#generateSchedule").prop('disabled', true);
@@ -146,14 +186,16 @@
 
                     data.schedules.forEach(function (schedule) {
 
-                        if (!schedule.filled && data.employeeCount > 0)
+                        if (!schedule.filled && data.employeeCount > 0) {
                             $("#generateSchedule").prop('disabled', false);
+                            $("#clearSpots").prop('disabled', false);
+                        }
 
                         var placements = schedule.placements;
 
                         //add dialog of each schedule
                         scheduleList.append('<div class="container-fluid">' +
-                            '<div class="modal-dialog" role="document">' +
+                            '<div class="modal-dialog" role="document"> <span onClick="window.hideSchedule(\'' + schedule._id + '\');" class="glyphicon glyphicon-remove" style="right:0;font-size:30px;margin-top:-13px;z-index:100;margin-right:-15px;position:absolute;background-color: orangered;border-radius: 22px;padding:  5;color: white;"></span>' +
                             '<div class="modal-content">' +
                             ' <div class="modal-body">' +
                             '<table class="table table-bordered">'
@@ -198,6 +240,22 @@
             document.getElementById("loader").style.display = "block";
             document.getElementById("scheduleList").style.display = "none";
         }
+
+        $("#clearSpots").click(function () {
+            $.ajax({
+                type: "POST",
+                url: "/clearEmployees",
+                dataType: "json",
+                contentType: "application/json; charset=utf-8"
+            }).done(function (data) {
+                // disable generating /clearing as well, since we have no employees!!
+                $("#generateSchedule").prop('disabled', true);
+                $("#clearSpots").prop('disabled', true);
+                $('#clearedEmployees').modal('show');
+            }).fail(function (data) {
+                alert("Failed to contact server: " + JSON.stringify(data));
+            });
+        });
 
         //executed when addschedule is clicked, clears the modal
         $("#addSchedule").click(function () {

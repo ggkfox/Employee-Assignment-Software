@@ -12,7 +12,6 @@ var session = require("express-session");
 var flash = require("connect-flash");
 var app = express();
 
-
 // process.env.DBURL="mongodb://localhost/lifeguard";
 console.log(process.env.DBURL);
 
@@ -33,6 +32,7 @@ var scheduleSchema = new mongoose.Schema(
     filled: Boolean,
     name: String,
     userId: String,
+    hidden: Boolean,
     placements: [
       {
         stationName: String,
@@ -315,9 +315,19 @@ app.post("/register", function(req, res) {
   res.send("register post route");
 });
 
+// Hide a given schedule
+app.post("/hideSchedule", isLoggedIn, function(request, response) {
+  Schedule.findOneAndUpdate(
+    { userId: request.user.id, _id: request.body.id },
+    { hidden: true },
+    function(err, doc, res) {
+      response.json({ success: true });
+    }
+  );
+});
 //returns a list of all the schedules defined in the database
 app.get("/schedules", isLoggedIn, function(req, res) {
-  Schedule.find({ userId: req.user.id })
+  Schedule.find({ userId: req.user.id, hidden: { $ne: true } })
     .sort("-created_at")
     .exec(function(error, schedules) {
       if (error) {
@@ -587,6 +597,18 @@ app.post("/generateSchedule", isLoggedIn, function(req, res) {
   );
 });
 
+app.post("/clearEmployees", isLoggedIn, function(request, response) {
+  try {
+    Employee.collection
+      .deleteMany({ userId: request.user.id })
+      .then(function(err) {
+        response.json({ success: true });
+      });
+  } catch (e) {
+    response.json({ success: false });
+  }
+});
+
 // Captures submission of schedule list
 app.post("/saveRotation", isLoggedIn, function(req, res) {
   var name = req.body.name;
@@ -599,6 +621,7 @@ app.post("/saveRotation", isLoggedIn, function(req, res) {
     name: name,
     userId: req.user.id,
     filled: false,
+    hidden: false,
     placements: stations.map(function(station) {
       return {
         stationName: station.name,
