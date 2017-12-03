@@ -14,12 +14,15 @@
 
 
 <body class="signup-background-color">
-  <% include partials/header %>
     <div class="container-fluid">
-      <div class="well signup-well-margin">
+      <div class="signup-well-margin">
+        <div>
+          <h1 class="text-center" style="font-family: Supermercado One; padding-top: 30px;">EAS</h1>
+        </div>
+        <hr>
         <ul>
           <p class="text-center signup-form-text-size">
-            <strong>Sign Up!</strong>
+            <strong>Sign up with your email</strong>
           </p>
           <form class="center-block" action="/signup" method="post">
 
@@ -36,9 +39,19 @@
                 <label>Password</label>
                 <input type="password" class="form-control"  placeholder="Password" name="password" required>
               </div>
-
-
+            <div>
+              <p class ="small-text-signup text-center">
+                By clicking on Sign up, you agree to EAS's <a href="#">terms & conditions</a> and <a href="#">privacy policy</a> 
+              </p>
+            </div>
+          <div style="text-align: center;">
             <button class="cetner-block signup-button" type="submit">Sign Up</button>
+          </div>
+          <div>
+            <p class ="small-text-signup text-center">
+              Already have an account? <a href="/login">Log in</a> 
+            </p>
+          </div>
           </form>
         </ul>
       </div>

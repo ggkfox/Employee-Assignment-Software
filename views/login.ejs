@@ -14,13 +14,17 @@
 
 
 <body class="signup-background-color">
-  <% include partials/header %>
     <div class="container-fluid">
-      <div class="well signup-well-margin">
+      <div class="signup-well-margin">
 
         <ul>
+        <div>
+          <h1 class="text-center" style="font-family: Supermercado One; padding-top: 30px;">EAS</h1>
+        </div>
+        <hr>
+        
           <p class="text-center signup-form-text-size">
-            <strong>Login!</strong>
+            <strong>Log in</strong>
           </p>
           <!-- show any messages that come back with authentication -->
           <% if (message.length > 0) { %>
@@ -38,20 +42,29 @@
                     <label>Password</label>
                     <input type="password" class="form-control" name="password" placeholder="Password" required>
                   </div>
-                  <div class="form-group">
-                    <label>Remember Me</label>
-                    <input type="checkbox" class="form-control" name="rememberme" value="yes">
-                  </div> 
-
-                <button class="cetner-block signup-button btn btn-warning btn-sm" type="submit">Login</button>
+                  
+                <div style="padding-left: 150;" class="row form-inline">
+                    <div class="form-group col-xs-4 col-sm-4">
+                      <label></label><input type="checkbox" class="form-control" name="rememberme" value="yes"> Remember Me</label>
+                    </div> 
+                    <div class="col-xs-4 col-sm-4">
+                      <button style="float: left;"class="cetner-block login-button btn btn-warning btn-sm" type="submit">Login</button>
+                    </div>
+                </div>
               </form>
-              <hr>
-
-              <p>Need an account?
+              <div>
+              <p class="text-center">Dont have an account?
                 <a href="/signup">Signup</a>
               </p>
-              <p>Or go
-                <a href="/">home</a>.</p>
+              </div>
+              
+              <hr>
+              
+              <div>
+                <p class="small-text-signup text-center">
+                  If you click Log in and are not a EAS user, you will be registered and agree to Spotify's Terms & Conditions and Privacy Policy.
+                </p>
+              </div>
         </ul>
       </div>
     </div>

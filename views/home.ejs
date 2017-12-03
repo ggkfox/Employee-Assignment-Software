@@ -13,7 +13,7 @@
         
         <% include partials/header %>
         
-        <div class="container-fluid hero">
+        <div class="container-fluid hero parallax-home">
             <div id="myCarousel" class="container carousel slide" data-ride="carousel">
                 <ol class="carousel-indicators">
                     <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -44,15 +44,56 @@
                 <% }%>
             </div>
         </div>
+        
         <div class="row grey-background">
-            <div class="container">
-                               <div><h1 style="text-align: center;">Begin using EAS in 3 easy steps!</h1></div>
-                 <hr>
+            
+        <div class="container">
+            <div style="margin-top: 60px;"><h1 style="text-align: center;">Begin using EAS in 3 easy steps!</h1></div>
+                 <hr style="margin-top: 30px; margin-bottom: 30px;">
                  <div class="col-md-4"><h2 style="text-align: center;">Step 1</h2><p style="text-align: center;"> Dont have an account? Create your free account by clicking <a href="signup">here</a>. </p></div>
                  <div class="col-md-4"><h2 style="text-align: center;">Step 2</h2><p style="text-align: center;"> Log in <a href="login">here</a> to gain access to all the features EAS offers.</p></div>
-               <div class="col-md-4"><h2 style="text-align: center;">Step 3</h2><p style="text-align: center;"> Upload an Excel sheet of your Company's employees and begin using EAS today!</p></div>
+               <div style="margin-bottom: 60px;" class="col-md-4"><h2 style="text-align: center;">Step 3</h2><p style="text-align: center;"> Upload an Excel sheet of your Company's employees and begin using EAS today!</p></div>
         </div>
-
+            
+            <div id="wrapper"style="padding:0;" class="container">
+                <div class="parallax-banner">
+                    
+                    <div class="container">
+                        <div style="color: #1b5c91; text-shadow: 2px 1px #FFFFFF;">
+                                  <h2 style="padding-top: 40px;" class="text-center"><strong>A simple tool that goes a long way</strong></h2>
+                                      <h3 class="text-center"><strong>Built with employers in mind</strong></h3>
+                                        <ul class="text-center">
+                                            
+                                          <li class="info-banner col-md-4">  
+                                            <h3><strong>Make time count</strong></h3>
+                                              <strong><br />We all know that time is money so <br />
+                                              why waste it on something that <br />
+                                              could be automated. EAS takes care <br />
+                                              of the details so that you can <br />
+                                              focus on your business.</strong>
+                                          </li>
+                                          <li class="info-banner col-md-4">           
+                                            <h3><strong>Keep things fair</strong></h3>
+                                            <strong><br />EAS uses an efficient algorithm <br>
+                                              to evenly distribute tasks among <br>
+                                              workers. This means workers won't <br>
+                                              be stuck doing the same routine. </strong>
+                                          </li>
+                                          <li class="info-banner col-md-4">
+                                            <h3><strong>Increase productivity</strong></h3>
+                                            <strong><br /> Don't let lack of interests<br>
+                                            hurt productivity. EAS helps boost <br>
+                                            your employees' interest by <br>
+                                            letting them experience different <br>
+                                            tasks. </strong>
+                                          </li>
+                                        </ul>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
         <% include partials/footer %>
         </body>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
