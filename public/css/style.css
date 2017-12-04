@@ -194,7 +194,33 @@ hr {
     border-width: 1px;
 }
 
-.parallax{
+.parallax-home{
+    background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
+}
+
+ul{
+    list-style: none;
+}
+
+.info-banner{
+    float: left;
+}
+
+.parallax-banner{
+    height: 400px;
+    background-image: url('/img/img.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover; 
+}
+
+#wrapper{
+    width:100%;
+}
+
+.well {
+   background-color: rgba(245, 245, 245, 0.4);
+   border-color: transparent;
 }
