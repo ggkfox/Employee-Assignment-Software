@@ -209,11 +209,13 @@ ul{
 }
 
 .parallax-banner{
-    height: 400px;
     background-image: url('/img/img.jpg');
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover; 
+}
+.parallax-banner div div ul li {
+    height: 225px;
 }
 
 #wrapper{
