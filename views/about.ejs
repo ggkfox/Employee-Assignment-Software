@@ -15,12 +15,12 @@
 
         <!--BODY STARTS HERE-->
         <div class="container-fluid" style="margin-top:100px">
-            <button type="button" class="btn blue opp-btn btn-lg" data-toggle="modal" data-target="#addEmployeesModal" id="addEmployees"
-                style="left:20px; position:absolute;font-size:20;z-index:99">Upload a File</button>
-            <button type="button" class="btn yellow opp-btn btn-lg" data-toggle="modal" id="addSchedule" style="float: right; margin: 5px; font-size:20;z-index:99">Add Rotation</button>
-            <button type="button" class="btn green opp-btn btn-lg" data-toggle="modal" id="generateSchedule" style="float: right; margin: 5px; font-size:20;z-index:99">Generate Schedule</button>
-            <button type="button" class="btn red opp-btn btn-lg" data-toggle="modal" id="clearSpots" style="float: right; margin: 5px; font-size:20;z-index:99">Remove Employees</button>
-            
+            <div class="row">
+                <button type="button" class="col-md-2 col-sm-12 btn blue opp-btn btn-lg" data-toggle="modal" data-target="#addEmployeesModal" id="addEmployees" style="font-size:20;z-index:99">Upload a File</button>
+                <button type="button" class="col-md-2 col-sm-12 col-md-offset-4 btn yellow opp-btn btn-lg" data-toggle="modal" id="addSchedule" style="font-size:20;z-index:99">Add Rotation</button>
+                <button type="button" class="col-md-2 col-sm-12 btn green opp-btn btn-lg" data-toggle="modal" id="generateSchedule" style="font-size:20;z-index:99">Generate Schedule</button>
+                <button type="button" class="col-md-2 col-sm-12 btn red opp-btn btn-lg" data-toggle="modal" id="clearSpots" style="font-size:20;z-index:99">Remove Employees</button>
+            </div>
             <div style="margin-top:50px">
                 <div class="loader" id="loader"></div>
                 <div style="display:none;" id="scheduleList" class="animate-bottom"></div>
